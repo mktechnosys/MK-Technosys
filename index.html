@@ -79,9 +79,21 @@ nav a:hover{color:var(--ink)}
 .hot:focus{outline:none}
 .hot.on .pulse{animation:pulse 1.6s ease-out infinite}
 @keyframes pulse{from{r:13;opacity:.55}to{r:26;opacity:0}}
-.info{margin-top:10px;background:var(--paper);border-radius:12px;padding:14px 16px;min-height:92px;border-left:5px solid var(--sec)}
-.info h3{font-size:1.02rem;margin-bottom:2px}
+.info{margin-top:10px;background:var(--paper);border-radius:12px;padding:14px 16px 12px;min-height:128px;border-left:5px solid var(--sec);overflow:hidden;position:relative;transition:border-color .4s}
+.info .slide{animation:slideIn .5s ease both}
+.info .slide.back{animation-name:slideInBack}
+@keyframes slideIn{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:none}}
+@keyframes slideInBack{from{opacity:0;transform:translateX(-28px)}to{opacity:1;transform:none}}
+.info .tag{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--c,#3B4A5C)}
+.info h3{font-size:1.02rem;margin:2px 0}
+.info h3 small{font-weight:600;color:var(--ink-2);font-size:.88em}
 .info p{font-size:.93rem;color:var(--ink-2)}
+.ctrl{display:flex;align-items:center;gap:10px;margin-top:10px}
+.ctrl button{flex:none;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink);font:700 14px var(--f);cursor:pointer;display:grid;place-items:center;padding:0}
+.ctrl button:hover,.ctrl button:focus-visible{border-color:var(--ink)}
+.ctrl .bar{flex:1;height:4px;border-radius:4px;background:var(--line);overflow:hidden}
+.ctrl .bar i{display:block;height:100%;width:0;background:var(--c,#E89B00)}
+.ctrl .count{font-size:.8rem;color:var(--ink-2);min-width:42px;text-align:right;font-variant-numeric:tabular-nums}
 .legend{display:flex;flex-wrap:wrap;gap:14px;font-size:.82rem;color:var(--ink-2);padding:8px 6px 0}
 .legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px;background:var(--c)}
 
@@ -226,17 +238,24 @@ footer b{color:#fff;font-weight:650}
         <rect x="196" y="296" width="6" height="22" fill="#1F8A4C"/>
         <rect x="298" y="296" width="6" height="22" fill="#1F8A4C"/>
 
-        <g class="hot" data-k="cctv" tabindex="0" role="button" aria-label="CCTV camera"><circle class="pulse" cx="38" cy="38" r="13" fill="#E89B00"/><circle class="ring" cx="38" cy="38" r="13" stroke="#E89B00"/><text x="38" y="38" fill="#14202E">C</text></g>
+        <g class="hot" data-k="cctv" tabindex="0" role="button" aria-label="Video surveillance (CCTV cameras)"><circle class="pulse" cx="38" cy="38" r="13" fill="#E89B00"/><circle class="ring" cx="38" cy="38" r="13" stroke="#E89B00"/><text x="38" y="38" fill="#14202E">C</text></g>
         <g class="hot" data-k="fire" tabindex="0" role="button" aria-label="Fire alarm"><circle class="pulse" cx="300" cy="150" r="13" fill="#E89B00"/><circle class="ring" cx="300" cy="150" r="13" stroke="#E89B00"/><text x="300" y="150" fill="#14202E">F</text></g>
         <g class="hot" data-k="access" tabindex="0" role="button" aria-label="Access control"><circle class="pulse" cx="455" cy="120" r="13" fill="#E89B00"/><circle class="ring" cx="455" cy="120" r="13" stroke="#E89B00"/><text x="455" y="120" fill="#14202E">A</text></g>
         <g class="hot" data-k="pos" tabindex="0" role="button" aria-label="POS billing"><circle class="pulse" cx="380" cy="222" r="13" fill="#1F8A4C"/><circle class="ring" cx="380" cy="222" r="13" stroke="#1F8A4C"/><text x="380" y="222" fill="#14202E">P</text></g>
         <g class="hot" data-k="barcode" tabindex="0" role="button" aria-label="Barcode scanner and printer"><circle class="pulse" cx="440" cy="222" r="13" fill="#1F8A4C"/><circle class="ring" cx="440" cy="222" r="13" stroke="#1F8A4C"/><text x="440" y="222" fill="#14202E">B</text></g>
         <g class="hot" data-k="eas" tabindex="0" role="button" aria-label="Anti-theft gates"><circle class="pulse" cx="250" cy="296" r="13" fill="#1F8A4C"/><circle class="ring" cx="250" cy="296" r="13" stroke="#1F8A4C"/><text x="250" y="296" fill="#14202E">E</text></g>
         <g class="hot" data-k="net" tabindex="0" role="button" aria-label="Network and Wi-Fi"><circle class="pulse" cx="400" cy="90" r="13" fill="#2357C6"/><circle class="ring" cx="400" cy="90" r="13" stroke="#2357C6"/><text x="400" y="90" fill="#14202E">N</text></g>
+        <g class="hot" data-k="intrusion" tabindex="0" role="button" aria-label="Intrusion detection"><circle class="pulse" cx="340" cy="42" r="13" fill="#E89B00"/><circle class="ring" cx="340" cy="42" r="13" stroke="#E89B00"/><text x="340" y="42" fill="#14202E">D</text></g>
+        <g class="hot" data-k="intercom" tabindex="0" role="button" aria-label="Intercom"><circle class="pulse" cx="120" cy="300" r="13" fill="#E89B00"/><circle class="ring" cx="120" cy="300" r="13" stroke="#E89B00"/><text x="120" y="300" fill="#14202E">I</text></g>
+        <g class="hot" data-k="gate" tabindex="0" role="button" aria-label="Entrance control"><circle class="pulse" cx="345" cy="296" r="13" fill="#E89B00"/><circle class="ring" cx="345" cy="296" r="13" stroke="#E89B00"/><text x="345" y="296" fill="#14202E">G</text></g>
+        <g class="hot" data-k="av" tabindex="0" role="button" aria-label="Projection, audio and video"><circle class="pulse" cx="300" cy="62" r="13" fill="#2357C6"/><circle class="ring" cx="300" cy="62" r="13" stroke="#2357C6"/><text x="300" y="62" fill="#14202E">S</text></g>
+        <g class="hot" data-k="lms" tabindex="0" role="button" aria-label="Light management system"><circle class="pulse" cx="117" cy="44" r="13" fill="#2357C6"/><circle class="ring" cx="117" cy="44" r="13" stroke="#2357C6"/><text x="117" y="44" fill="#14202E">L</text></g>
+        <g class="hot" data-k="auto" tabindex="0" role="button" aria-label="Home and office automation"><circle class="pulse" cx="480" cy="94" r="13" fill="#2357C6"/><circle class="ring" cx="480" cy="94" r="13" stroke="#2357C6"/><text x="480" y="94" fill="#14202E">H</text></g>
       </svg>
       <div class="info" id="info" aria-live="polite"></div>
+      <div class="ctrl"><button type="button" id="prev" aria-label="Previous service">&#8249;</button><button type="button" id="play" aria-label="Pause slideshow">&#10073;&#10073;</button><div class="bar"><i id="bar"></i></div><span class="count" id="count"></span><button type="button" id="next" aria-label="Next service">&#8250;</button></div>
       <div class="legend"><span style="--c:#E89B00">Security &amp; safety</span><span style="--c:#1F8A4C">Retail &amp; RFID</span><span style="--c:#2357C6">IT, AV &amp; automation</span></div>
-      <figcaption class="hint">Tap a point on the plan to see what it does.</figcaption>
+      <figcaption class="hint">Services change automatically. Tap any point on the plan to pick one.</figcaption>
     </figure>
   </div>
 </section>
@@ -389,7 +408,7 @@ footer b{color:#fff;font-weight:650}
       </select>
       <label for="s">What do you need?</label>
       <select id="s" name="s">
-        <option>CCTV cameras</option><option>POS billing system</option><option>Barcode / label printing</option><option>Wi-Fi / networking</option><option>RFID / EAS anti-theft</option><option>Fire alarm</option><option>Access control / intercom</option><option>Intrusion detection / entrance control</option><option>Projection, audio &amp; video</option><option>Home / office automation</option><option>Light management (LMS)</option><option>More than one of these</option>
+        <option>Video surveillance (CCTV cameras)</option><option>POS billing system</option><option>Barcode / label printing</option><option>Wi-Fi / networking</option><option>RFID / EAS anti-theft</option><option>Fire alarm</option><option>Access control / intercom</option><option>Intrusion detection / entrance control</option><option>Projection, audio &amp; video</option><option>Home / office automation</option><option>Light management (LMS)</option><option>More than one of these</option>
       </select>
       <label for="m">Details (optional)</label>
       <textarea id="m" name="m" placeholder="Area, shop size, number of counters..."></textarea>
@@ -415,26 +434,55 @@ footer b{color:#fff;font-weight:650}
 <script>
 (function(){
   var D={
-    cctv:["CCTV cameras","Cover aisles, the counter and the entrance. Watch live and play back recordings from your phone.","#E89B00"],
-    fire:["Fire alarm","Smoke and heat detectors that raise the alarm early, wired to a control panel.","#E89B00"],
-    access:["Access control","Fingerprint or card lock on the store room, with a record of who went in and when.","#E89B00"],
-    pos:["POS billing","Billing software with touch terminal, receipt printer and cash drawer. GST bills and stock reports.","#1F8A4C"],
-    barcode:["Barcode scanner & label printer","Scan items at the counter and print your own price and barcode labels.","#1F8A4C"],
-    eas:["Anti-theft gates","EAS gates at the door sound an alarm if a tagged item leaves without billing.","#1F8A4C"],
-    net:["Network & Wi-Fi","Router, switch and cabling in one neat rack, with Wi-Fi that reaches the whole shop.","#2357C6"]
+    cctv:["Security & safety","Video Surveillance","CCTV cameras","Cover aisles, the counter and the entrance. Watch live and play back recordings from your phone.","#E89B00"],
+    pos:["Retail & RFID","POS billing","","Billing software with touch terminal, receipt printer and cash drawer. GST bills and stock reports.","#1F8A4C"],
+    barcode:["Retail & RFID","Barcode scanner & label printer","","Scan items at the counter and print your own price and barcode labels.","#1F8A4C"],
+    eas:["Retail & RFID","Anti-theft gates","EAS","Gates at the door sound an alarm if a tagged item leaves without billing.","#1F8A4C"],
+    net:["IT, AV & automation","Network & Wi-Fi","","Router, switch and cabling in one neat rack, with Wi-Fi that reaches the whole shop.","#2357C6"],
+    fire:["Security & safety","Fire alarm","","Smoke and heat detectors that raise the alarm early, wired to a control panel.","#E89B00"],
+    access:["Security & safety","Access control","","Fingerprint or card lock on the store room, with a record of who went in and when.","#E89B00"],
+    intercom:["Security & safety","Intercom","Video door phone","See and talk to whoever is at the door before you let them in, from the counter or the back room.","#E89B00"],
+    intrusion:["Security & safety","Intrusion detection","Burglar alarm","Motion and door sensors that sound a siren and alert your phone if someone enters after closing.","#E89B00"],
+    gate:["Security & safety","Entrance control","Turnstiles, boom barriers & gates","Control who comes in at offices, factories, societies and parking, on foot or by vehicle.","#E89B00"],
+    av:["IT, AV & automation","Projection, audio & video","","Projectors, displays and sound for meeting rooms, classrooms, halls and in-store promotions.","#2357C6"],
+    lms:["IT, AV & automation","Light Management System","LMS","Lights switch on and off by schedule or sensor, so you never pay to light an empty shop.","#2357C6"],
+    auto:["IT, AV & automation","Home & office automation","","Control lights, AC, curtains and locks from your phone or by voice, at home or at work.","#2357C6"]
   };
-  var info=document.getElementById('info'), hots=document.querySelectorAll('.hot');
-  function show(k){
-    var d=D[k]; if(!d)return;
+  var order=Object.keys(D), info=document.getElementById('info'), hots=document.querySelectorAll('.hot'),
+      bar=document.getElementById('bar'), count=document.getElementById('count'), play=document.getElementById('play'),
+      plan=document.querySelector('.plan'), DUR=5000, idx=0, t0=0, raf=0, paused=false, hover=false, visible=true, holdUntil=0,
+      still=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function show(i,back){
+    idx=(i+order.length)%order.length; var k=order[idx], d=D[k];
     hots.forEach(function(h){h.classList.toggle('on',h.dataset.k===k)});
-    info.style.borderLeftColor=d[2];
-    info.innerHTML='<h3>'+d[0]+'</h3><p>'+d[1]+'</p>';
+    info.style.borderLeftColor=d[4]; plan.style.setProperty('--c',d[4]);
+    info.innerHTML='<div class="slide'+(back?' back':'')+'"><span class="tag">'+d[0]+'</span><h3>'+d[1]+(d[2]?' <small>('+d[2]+')</small>':'')+'</h3><p>'+d[3]+'</p></div>';
+    count.textContent=(idx+1)+' / '+order.length; t0=performance.now(); bar.style.width='0';
   }
+  function running(){return !paused&&!hover&&visible&&!document.hidden&&performance.now()>holdUntil}
+  function tick(now){
+    if(running()){
+      if(!t0)t0=now; var p=(now-t0)/DUR;
+      if(p>=1){show(idx+1)} else bar.style.width=(p*100)+'%';
+    } else t0=now-(parseFloat(bar.style.width)||0)/100*DUR;
+    raf=requestAnimationFrame(tick);
+  }
+  function hold(){holdUntil=performance.now()+12000}
+  function setPaused(v){paused=v;play.innerHTML=v?'&#9654;':'&#10073;&#10073;';play.setAttribute('aria-label',v?'Play slideshow':'Pause slideshow')}
   hots.forEach(function(h){
-    h.addEventListener('click',function(){show(h.dataset.k)});
-    h.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();show(h.dataset.k)}});
+    function pick(){var i=order.indexOf(h.dataset.k);show(i,i<idx);hold()}
+    h.addEventListener('click',pick);
+    h.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();pick()}});
   });
-  show('cctv');
+  document.getElementById('next').addEventListener('click',function(){show(idx+1);hold()});
+  document.getElementById('prev').addEventListener('click',function(){show(idx-1,true);hold()});
+  play.addEventListener('click',function(){setPaused(!paused);holdUntil=0});
+  plan.addEventListener('mouseenter',function(){hover=true});
+  plan.addEventListener('mouseleave',function(){hover=false});
+  if('IntersectionObserver' in window)new IntersectionObserver(function(e){visible=e[0].isIntersecting}).observe(plan);
+  show(0);
+  if(still)setPaused(true);
+  raf=requestAnimationFrame(tick);
 
   document.getElementById('enq').addEventListener('submit',function(e){
     e.preventDefault();
