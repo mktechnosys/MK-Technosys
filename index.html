@@ -544,15 +544,16 @@ footer b{color:#fff;font-weight:650}
     data._subject='New website enquiry: '+data['Service needed']+' ('+data.Name+')';
     data._template='table';data._captcha='false';
     btn.disabled=true;btn.textContent='Sending...';
-    fetch('https://formsubmit.co/ajax/info@mktechnosys.in',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
-      .then(function(r){return r.json()})
+    var ac=window.AbortController?new AbortController():null, to=setTimeout(function(){if(ac)ac.abort()},20000);
+    fetch('https://formsubmit.co/ajax/info@mktechnosys.in',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data),signal:ac?ac.signal:undefined})
+      .then(function(r){clearTimeout(to);return r.json()})
       .then(function(r){
         var ok=r&&(r.success===true||r.success==='true'||/activat/i.test(r.message||''));
         if(!ok)throw new Error(r&&r.message||'failed');
         document.getElementById('fields').hidden=true;document.getElementById('sent').hidden=false;
       })
       .catch(function(){
-        btn.disabled=false;btn.textContent='Send enquiry';
+        clearTimeout(to);btn.disabled=false;btn.textContent='Send enquiry';
         err.innerHTML='Sorry, it couldn\'t be sent. Please try again, or WhatsApp us on <a href="https://wa.me/919638851961" target="_blank" rel="noopener">+91 96388 51961</a>.';
       });
   });
