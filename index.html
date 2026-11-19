@@ -543,7 +543,7 @@ footer b{color:#fff;font-weight:650}
     if(data._honey)return;
     btn.disabled=true;btn.textContent='Sending...';
     var ac=window.AbortController?new AbortController():null, to=setTimeout(function(){if(ac)ac.abort()},20000);
-    fetch('https://script.google.com/macros/s/AKfycbzD4eZqnbbm-wu3q9cAAtoK7G4WuNRGs-71y-wVxMioiwT4V4I0ILVFP0YWQSodYedn/exec',{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(data),redirect:'follow',signal:ac?ac.signal:undefined})
+    fetch('https://script.google.com/macros/s/AKfycbyXyWmgH5GuBwW5xwsGQurQLVR75fjZOiojMPme-8mG2-WOJB8fpRVyLdu74GK1gpzJ/exec',{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(data),redirect:'follow',signal:ac?ac.signal:undefined})
       .then(function(r){clearTimeout(to);return r.json()})
       .then(function(r){
         var ok=r&&(r.success===true||r.success==='true');
