@@ -60,6 +60,8 @@ nav a:hover{color:var(--ink)}
 .btn.wa:hover{background:#18723E}
 .btn.ghost{background:transparent;color:var(--ink)}
 .btn.ghost:hover{background:var(--ink);color:#fff}
+.btn.send{background:#2357C6;border-color:#2357C6;color:#fff;cursor:pointer}
+.btn.send:hover{background:#1B46A3;border-color:#1B46A3}
 .top .btn{padding:9px 16px;font-size:.9rem}
 .top .btn{white-space:nowrap}
 @media (max-width:820px){nav{display:none}}
@@ -176,6 +178,10 @@ form input:focus,form select:focus,form textarea:focus{border-color:var(--net);o
 form .btn{margin-top:18px;width:100%;justify-content:center}
 .note{font-size:.84rem;color:var(--ink-2);margin-top:10px}
 .err{color:#B3261E;font-size:.88rem;margin-top:8px;min-height:1.2em}
+form .bad{border-color:#B3261E}
+form .btn[disabled]{opacity:.6;cursor:wait}
+.sent{padding:8px 0}
+.sent-t{font-size:1.1rem;font-weight:700;color:#1F8A4C;margin:10px 0 4px}
 
 footer{background:var(--ink);color:#B8C3CF;padding:30px 0;font-size:.9rem}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
@@ -417,22 +423,35 @@ footer b{color:#fff;font-weight:650}
       </div>
     </div>
     <form class="card" id="enq" novalidate>
-      <h3>Send an enquiry on WhatsApp</h3>
+      <h3>Send us an enquiry</h3>
+      <div id="fields">
       <label for="n">Your name</label>
-      <input id="n" name="n" autocomplete="name" required>
+      <input id="n" name="Name" autocomplete="name" required>
+      <label for="ph">Mobile number</label>
+      <input id="ph" name="Mobile" type="tel" inputmode="tel" autocomplete="tel" placeholder="98765 43210" required>
+      <label for="em">Email</label>
+      <input id="em" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
       <label for="t">Type of business</label>
-      <select id="t" name="t">
+      <select id="t" name="Business type" required>
+        <option value="" disabled selected>Select one</option>
         <option>Retail shop</option><option>Supermarket / mart</option><option>Restaurant / cafe</option><option>Office</option><option>Home</option><option>Other</option>
       </select>
       <label for="s">What do you need?</label>
-      <select id="s" name="s">
+      <select id="s" name="Service needed" required>
+        <option value="" disabled selected>Select one</option>
         <option>Video surveillance (CCTV cameras)</option><option>POS billing system</option><option>Barcode / label printing</option><option>Wi-Fi / networking</option><option>RFID / EAS anti-theft</option><option>Fire alarm</option><option>Access control / intercom</option><option>Intrusion detection / entrance control</option><option>Projection, audio &amp; video</option><option>Home / office automation</option><option>Light management (LMS)</option><option>Website</option><option>Business email / domain</option><option>Android app</option><option>Web app</option><option>More than one of these</option>
       </select>
-      <label for="m">Details (optional)</label>
-      <textarea id="m" name="m" placeholder="Area, shop size, number of counters..."></textarea>
+      <label for="m">Details</label>
+      <textarea id="m" name="Details" placeholder="Area, shop size, number of counters..." required></textarea>
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       <p class="err" id="err" role="alert"></p>
-      <button class="btn wa" type="submit">Open WhatsApp with this message</button>
-      <p class="note">This opens WhatsApp with your message filled in. Nothing is sent until you press send there.</p>
+      <button class="btn send" type="submit" id="sendbtn">Send enquiry</button>
+      <p class="note">All fields are required. We usually reply the same day.</p>
+      </div>
+      <div class="sent" id="sent" hidden>
+        <p class="sent-t">Thank you, your enquiry has been sent.</p>
+        <p class="note">We'll call or email you soon. For anything urgent, WhatsApp us on <a href="https://wa.me/919638851961" target="_blank" rel="noopener">+91 96388 51961</a>.</p>
+      </div>
     </form>
   </div>
 </section>
@@ -505,13 +524,41 @@ footer b{color:#fff;font-weight:650}
 
   document.getElementById('enq').addEventListener('submit',function(e){
     e.preventDefault();
-    var n=this.n.value.trim(), err=document.getElementById('err');
-    if(!n){err.textContent='Enter your name so we know who to reply to.';this.n.focus();return}
+    var f=this, err=document.getElementById('err'), btn=document.getElementById('sendbtn');
+    var checks=[
+      ['n',function(v){return v.length>1},'Enter your name.'],
+      ['ph',function(v){return v.replace(/\D/g,'').length>=10},'Enter a valid mobile number (10 digits).'],
+      ['em',function(v){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)},'Enter a valid email address.'],
+      ['t',function(v){return !!v},'Select your type of business.'],
+      ['s',function(v){return !!v},'Select what you need.'],
+      ['m',function(v){return v.length>2},'Add a few details about your requirement.']
+    ];
+    for(var i=0;i<checks.length;i++){var el=document.getElementById(checks[i][0]);el.classList.remove('bad')}
+    for(i=0;i<checks.length;i++){
+      var el=document.getElementById(checks[i][0]);
+      if(!checks[i][1]((el.value||'').trim())){el.classList.add('bad');err.textContent=checks[i][2];el.focus();return}
+    }
     err.textContent='';
-    var msg='Hello M K Technosys,\nName: '+n+'\nBusiness: '+this.t.value+'\nNeed: '+this.s.value+(this.m.value.trim()?'\nDetails: '+this.m.value.trim():'');
-    var a=document.createElement('a');
-    a.href='https://wa.me/919638851961?text='+encodeURIComponent(msg);
-    a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();a.remove();
+    var data={};new FormData(f).forEach(function(v,k){data[k]=typeof v==='string'?v.trim():v});
+    if(data._honey)return;
+    data._subject='New website enquiry: '+data['Service needed']+' ('+data.Name+')';
+    data._template='table';data._captcha='false';
+    btn.disabled=true;btn.textContent='Sending...';
+    fetch('https://formsubmit.co/ajax/info@mktechnosys.in',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
+      .then(function(r){return r.json()})
+      .then(function(r){
+        var ok=r&&(r.success===true||r.success==='true'||/activat/i.test(r.message||''));
+        if(!ok)throw new Error(r&&r.message||'failed');
+        document.getElementById('fields').hidden=true;document.getElementById('sent').hidden=false;
+      })
+      .catch(function(){
+        btn.disabled=false;btn.textContent='Send enquiry';
+        err.innerHTML='Sorry, it couldn\'t be sent. Please try again, or WhatsApp us on <a href="https://wa.me/919638851961" target="_blank" rel="noopener">+91 96388 51961</a>.';
+      });
+  });
+  document.querySelectorAll('#enq input,#enq select,#enq textarea').forEach(function(el){
+    el.addEventListener('input',function(){el.classList.remove('bad');document.getElementById('err').textContent=''});
+    el.addEventListener('change',function(){el.classList.remove('bad')});
   });
 })();
 (function(){var b=document.getElementById('totop');if(!b)return;
