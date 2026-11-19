@@ -541,14 +541,12 @@ footer b{color:#fff;font-weight:650}
     err.textContent='';
     var data={};new FormData(f).forEach(function(v,k){data[k]=typeof v==='string'?v.trim():v});
     if(data._honey)return;
-    data._subject='New website enquiry: '+data['Service needed']+' ('+data.Name+')';
-    data._template='table';data._captcha='false';
     btn.disabled=true;btn.textContent='Sending...';
     var ac=window.AbortController?new AbortController():null, to=setTimeout(function(){if(ac)ac.abort()},20000);
-    fetch('https://formsubmit.co/ajax/info@mktechnosys.in',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data),signal:ac?ac.signal:undefined})
+    fetch('https://script.google.com/macros/s/AKfycbzD4eZqnbbm-wu3q9cAAtoK7G4WuNRGs-71y-wVxMioiwT4V4I0ILVFP0YWQSodYedn/exec',{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(data),redirect:'follow',signal:ac?ac.signal:undefined})
       .then(function(r){clearTimeout(to);return r.json()})
       .then(function(r){
-        var ok=r&&(r.success===true||r.success==='true'||/activat/i.test(r.message||''));
+        var ok=r&&(r.success===true||r.success==='true');
         if(!ok)throw new Error(r&&r.message||'failed');
         document.getElementById('fields').hidden=true;document.getElementById('sent').hidden=false;
       })
