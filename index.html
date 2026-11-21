@@ -122,6 +122,51 @@ nav a:hover,nav a:focus-visible{background:#2357C6;color:#fff;outline:none}
 @keyframes mallWalk{from{transform:translateX(0)}to{transform:translateX(-28px)}}
 .plan .anim.esc{animation:mallEsc 1.2s linear infinite}
 @keyframes mallEsc{to{stroke-dashoffset:-20}}
+/* category slider */
+.cs{padding:14px 14px 12px;min-width:0;max-width:100%}
+.hero .wrap>*{min-width:0}
+.cs-top{display:flex;align-items:center;justify-content:space-between;margin:0 2px 10px}
+.cs-title{font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.cs-music{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:6px 12px 6px 9px;font:700 .82rem var(--f);cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.cs-music svg{width:18px;height:18px;fill:currentColor;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+.cs-music svg path.on,.cs-music svg path.off{fill:none}
+.cs-music svg path.on{display:none}.cs-music.on svg path.on{display:inline}.cs-music.on svg path.off{display:none}
+.cs-music:hover,.cs-music:focus-visible{border-color:var(--ink)}
+.cs-music.on{background:var(--c,#2357C6);border-color:var(--c,#2357C6);color:#fff}
+.cs-vp{overflow:hidden;border-radius:14px}
+.cs-track{display:flex;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.cs-card{flex:0 0 100%;background:var(--paper);border-radius:14px;overflow:hidden;border-top:6px solid var(--c)}
+.cs-hd{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:12px 16px 4px;flex-wrap:wrap}
+.cs-hd b{font-size:1.05rem;color:var(--c)}
+.cs-hd span{font-size:.8rem;color:var(--ink-2)}
+.cs-card svg{display:block;width:100%;height:auto}
+.cs-hs{cursor:pointer}.cs-hs:focus{outline:none}
+.cs-hs .r{fill:#fff;stroke-width:2.5;transition:fill .3s}.cs-hs.on .r,.cs-hs:focus .r{fill:var(--c)}
+.cs-hs .p{fill:var(--c);opacity:0;transform-box:fill-box;transform-origin:center}.cs-hs.on .p{animation:csPu 1.6s ease-out infinite}
+@keyframes csPu{0%{opacity:.5;transform:scale(1)}100%{opacity:0;transform:scale(2.4)}}
+.cs-det{margin:0 16px 10px;padding:10px 12px;border-radius:10px;background:var(--bg);border-left:4px solid var(--c);min-height:68px}
+.cs-det b{display:block;font-size:1rem}
+.cs-det span{font-size:.9rem;color:var(--ink-2)}
+.cs-chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 16px}
+.cs-chips button{font:600 .76rem var(--f);padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink-2);cursor:pointer;transition:all .3s}
+.cs-chips button.on,.cs-chips button:hover{background:var(--c);border-color:var(--c);color:#fff}
+.cs-nav{display:flex;align-items:center;gap:10px;margin-top:12px}
+.cs-nav>button{flex:none;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink);font:700 15px var(--f);cursor:pointer;display:grid;place-items:center;padding:0}
+.cs-nav>button:hover,.cs-nav>button:focus-visible{border-color:var(--ink)}
+.cs-dots{flex:1;display:flex;gap:6px;justify-content:center}
+.cs-dots button{height:8px;width:8px;border-radius:4px;border:0;padding:0;background:#C9D2DC;cursor:pointer;transition:all .3s}
+.cs-dots button.on{width:26px;background:var(--c)}
+.cs .a-glow{animation:aGl 2.6s ease-in-out infinite}.cs .a-blink{animation:aGl 1.3s ease-in-out infinite}.cs .a-beep{animation:aGl .9s steps(2) infinite}
+@keyframes aGl{0%,100%{opacity:.3}50%{opacity:1}}
+.cs .a-sweep{animation:aSw 4.5s ease-in-out infinite alternate}@keyframes aSw{from{transform:rotate(-16deg)}to{transform:rotate(14deg)}}
+.cs .a-boom{animation:aBm 6s ease-in-out infinite}@keyframes aBm{0%,35%{transform:rotate(0)}50%,80%{transform:rotate(-70deg)}100%{transform:rotate(0)}}
+.cs .a-wave{fill:none;stroke:#0E7C86;stroke-width:2;opacity:0;animation:aWv 2.4s ease-out infinite;transform-box:fill-box;transform-origin:center bottom}@keyframes aWv{0%{opacity:.85;transform:scale(.3)}100%{opacity:0;transform:scale(1.4)}}
+.cs .a-pkt{animation:aPk 2.2s linear infinite}@keyframes aPk{0%{offset-distance:0%;opacity:0}10%,90%{opacity:1}100%{offset-distance:100%;opacity:0}}
+.cs .a-scan{animation:aSc 1.8s ease-in-out infinite alternate}@keyframes aSc{from{transform:translateY(0)}to{transform:translateY(14px)}}
+.cs .a-note{animation:aNt 3s ease-out infinite;transform-box:fill-box}@keyframes aNt{0%{opacity:0;transform:translate(0,0)}20%{opacity:1}100%{opacity:0;transform:translate(18px,-26px)}}
+.cs .a-type{animation:aTy 3s steps(12) infinite}@keyframes aTy{from{width:0}to{width:96px}}
+.cs .a-walk{animation:aWk 6s ease-in-out infinite alternate}@keyframes aWk{from{transform:translateX(0)}to{transform:translateX(-60px)}}
+.cs .a-spin{animation:aSp 3s linear infinite;transform-box:fill-box;transform-origin:center}@keyframes aSp{to{transform:rotate(360deg)}}
 .legend{display:flex;flex-wrap:wrap;gap:14px;font-size:.82rem;color:var(--ink-2);padding:8px 6px 0}
 .legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px;background:var(--c)}
 
@@ -250,90 +295,10 @@ footer b{color:#fff;font-weight:650}
       <p class="where">Based in Bopal. Serving Ahmedabad and nearby areas.</p>
     </div>
 
-    <figure class="plan">
-      <svg viewBox="0 0 640 410" role="group" aria-label="Shopping mall cut-away showing where each M K Technosys service is used. Select a point to learn more.">
-        <rect x="0" y="0" width="640" height="352" fill="#EEF4FB"/>
-        <path d="M0 352V250h30v-30h26v40h20v-60h34v70h12V200h0H0zM560 352V230h24v-40h30v50h26v112z" fill="#DCE6F2"/>
-        <circle cx="40" cy="44" r="18" fill="#FDE68A" opacity=".8"/>
-        <rect x="0" y="352" width="640" height="58" fill="#CBD5E1"/><rect x="0" y="352" width="640" height="6" fill="#E2E8F0"/>
-        <rect x="548" y="384" width="22" height="3" fill="#F8FAFC"/><rect x="582" y="384" width="22" height="3" fill="#F8FAFC"/><rect x="616" y="384" width="22" height="3" fill="#F8FAFC"/>
-        <ellipse cx="300" cy="356" rx="260" ry="5" fill="#94A3B8" opacity=".35"/>
-        <rect x="28" y="318" width="5" height="36" fill="#7C5A3A"/><circle cx="30" cy="308" r="16" fill="#4ADE80"/><circle cx="22" cy="314" r="10" fill="#22C55E"/>
-        <rect x="44" y="290" width="3" height="64" fill="#64748B"/><path d="M45 290h10" stroke="#64748B" stroke-width="3"/><circle cx="56" cy="294" r="5" fill="#FDE68A" class="anim glow"/>
-        <path d="M562 54a20 20 0 0 1 37-6 16 16 0 0 1 28 10 13 13 0 0 1-4 26h-56a15 15 0 0 1-5-30z" fill="#fff" stroke="#0E7C86" stroke-width="2"/>
-        <path d="M552 396 C 630 380, 640 250, 600 88" fill="none" stroke="#0E7C86" stroke-width="1.5" stroke-dasharray="3 5" opacity=".7"/><circle r="4" class="anim pkt" style="offset-path:path('M552 396 C 630 380, 640 250, 600 88')" fill="#0E7C86"/><circle r="4" class="anim pkt" style="offset-path:path('M552 396 C 630 380, 640 250, 600 88');animation-delay:1.2s" fill="#0E7C86"/>
-        <rect x="574" y="104" width="58" height="136" rx="11" fill="#1E293B"/><rect x="579" y="114" width="48" height="116" rx="4" fill="#F5F3FF"/><rect x="595" y="108" width="16" height="3" rx="1.5" fill="#475569"/>
-        <g class="anim car2"><rect x="0" y="388" width="46" height="13" rx="4" fill="#2357C6"/><rect x="9" y="381" width="24" height="9" rx="3" fill="#2357C6"/><rect x="12" y="383" width="8" height="5" fill="#DBEAFE"/><rect x="22" y="383" width="8" height="5" fill="#DBEAFE"/><circle cx="10" cy="402" r="4.5" fill="#14202E"/><circle cx="36" cy="402" r="4.5" fill="#14202E"/></g>
-        <path d="M540 78 L556 70 L556 344 L540 352 Z" fill="#94A3B8"/><path d="M540 352 L556 344 L556 404 L540 410 Z" fill="#0B1220"/>
-        <path d="M60 78 Q300 14 540 78 Z" fill="#BFDBFE" stroke="#14202E" stroke-width="3"/><path d="M90 74 Q300 28 510 74" fill="none" stroke="#fff" stroke-width="3" opacity=".7"/>
-        <path d="M140 78 L150 58" stroke="#93C5FD" stroke-width="2"/><path d="M220 78 L226 42" stroke="#93C5FD" stroke-width="2"/><path d="M300 78 L300 35" stroke="#93C5FD" stroke-width="2"/><path d="M380 78 L374 42" stroke="#93C5FD" stroke-width="2"/><path d="M460 78 L450 58" stroke="#93C5FD" stroke-width="2"/>
-        <rect x="250" y="62" width="100" height="14" rx="3" fill="#14202E"/><text x="300" y="73" font-family="Archivo,sans-serif" font-size="9" font-weight="800" letter-spacing=".08em" fill="#FDE68A" text-anchor="middle">CITY MALL</text>
-        <rect x="60" y="78" width="480" height="274" fill="#fff" stroke="#14202E" stroke-width="3"/>
-        <rect x="62" y="80" width="476" height="84" fill="#1E1B4B"/><text x="70" y="92" font-family="Archivo,sans-serif" font-size="8" font-weight="800" letter-spacing=".08em" fill="#A5B4FC">CINEMA</text>
-        <rect x="96" y="96" width="138" height="58" rx="2" fill="#0F172A"/><rect x="101" y="101" width="128" height="48" fill="#DBEAFE" class="anim glow"/><path d="M110 142 l22-20 16 12 22-22 28 30" fill="none" stroke="#2357C6" stroke-width="2.5"/><circle cx="210" cy="114" r="6" fill="#FDE68A"/>
-        <path d="M332 98 L234 102 L234 148 Z" fill="#FDE68A" opacity=".22" class="anim glow"/><rect x="326" y="92" width="16" height="10" rx="2" fill="#94A3B8"/>
-        <rect x="248" y="94" width="14" height="22" rx="3" fill="#0F172A" stroke="#475569"/><circle cx="255" cy="109" r="4" fill="#64748B"/>
-        <rect x="268" y="134" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="294" y="134" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="320" y="134" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="346" y="134" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="372" y="134" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="398" y="134" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="424" y="134" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="450" y="134" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="476" y="134" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="502" y="134" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="268" y="148" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="294" y="148" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="320" y="148" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="346" y="148" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="372" y="148" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="398" y="148" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="424" y="148" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="450" y="148" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="476" y="148" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="502" y="148" width="20" height="10" rx="3" fill="#4C1D95"/>
-        <circle cx="278" cy="131" r="3.4" fill="#A5B4FC"/><circle cx="330" cy="131" r="3.4" fill="#A5B4FC"/><circle cx="408" cy="131" r="3.4" fill="#A5B4FC"/><circle cx="460" cy="145" r="3.4" fill="#A5B4FC"/><circle cx="304" cy="145" r="3.4" fill="#A5B4FC"/><circle cx="382" cy="145" r="3.4" fill="#A5B4FC"/>
-        <circle cx="392" cy="88" r="11" fill="#FDE68A" class="anim glow"/><circle cx="392" cy="88" r="5" fill="#F59E0B"/>
-        <circle cx="470" cy="88" r="6" fill="#F8FAFC" stroke="#DC2626" stroke-width="2"/><circle cx="470" cy="88" r="2" fill="#DC2626" class="anim blink"/>
-        <line x1="60" y1="164" x2="540" y2="164" stroke="#14202E" stroke-width="3"/>
-        <rect x="62" y="166" width="476" height="86" fill="#FFF7ED"/><text x="70" y="178" font-family="Archivo,sans-serif" font-size="8" font-weight="800" letter-spacing=".08em" fill="#9A3412">FOOD COURT</text>
-        <rect x="140" y="172" width="44" height="16" rx="3" fill="#fff" stroke="#2357C6"/><path d="M146 192 v6 M156 192 v8 M166 192 v6 M176 192 v8" stroke="#93C5FD" stroke-width="2" class="anim glow"/>
-        <rect x="92" y="200" width="34" height="40" rx="3" fill="#FDBA74"/><rect x="92" y="196" width="34" height="8" rx="2" fill="#EA580C"/><text x="109" y="226" font-family="Archivo,sans-serif" font-size="7" font-weight="800" letter-spacing=".08em" fill="#7C2D12" text-anchor="middle">CAFE</text>
-        <path d="M290 252 L372 166" stroke="#94A3B8" stroke-width="12"/><path d="M290 252 L372 166" stroke="#E2E8F0" stroke-width="7" stroke-dasharray="6 4" class="anim esc"/>
-        <g class=""><circle cx="318" cy="207" r="3.6" fill="#334155"/><rect x="314.5" y="211" width="7" height="10" rx="3" fill="#EC4899"/><rect x="315" y="220" width="2.4" height="5" fill="#334155"/><rect x="318.6" y="220" width="2.4" height="5" fill="#334155"/></g><g class=""><circle cx="346" cy="179" r="3.6" fill="#334155"/><rect x="342.5" y="183" width="7" height="10" rx="3" fill="#2357C6"/><rect x="343" y="192" width="2.4" height="5" fill="#334155"/><rect x="346.6" y="192" width="2.4" height="5" fill="#334155"/></g>
-        <rect x="252" y="200" width="18" height="26" rx="3" fill="#fff" stroke="#C27C00" stroke-width="1.5"/><rect x="256" y="205" width="10" height="5" fill="#C27C00"/>
-        <rect x="150" y="226" width="34" height="5" rx="2" fill="#A16207"/><rect x="200" y="226" width="34" height="5" rx="2" fill="#A16207"/><rect x="392" y="226" width="34" height="5" rx="2" fill="#A16207"/>
-        <g class=""><circle cx="160" cy="207" r="3.6" fill="#334155"/><rect x="156.5" y="211" width="7" height="10" rx="3" fill="#0E7C86"/><rect x="157" y="220" width="2.4" height="5" fill="#334155"/><rect x="160.6" y="220" width="2.4" height="5" fill="#334155"/></g><g class=""><circle cx="222" cy="207" r="3.6" fill="#334155"/><rect x="218.5" y="211" width="7" height="10" rx="3" fill="#F59E0B"/><rect x="219" y="220" width="2.4" height="5" fill="#334155"/><rect x="222.6" y="220" width="2.4" height="5" fill="#334155"/></g><g class=""><circle cx="414" cy="207" r="3.6" fill="#334155"/><rect x="410.5" y="211" width="7" height="10" rx="3" fill="#1F8A4C"/><rect x="411" y="220" width="2.4" height="5" fill="#334155"/><rect x="414.6" y="220" width="2.4" height="5" fill="#334155"/></g>
-        <rect x="352" y="168" width="16" height="6" rx="3" fill="#fff" stroke="#0E7C86"/>
-        <path class="anim wave" style="animation-delay:0s" d="M350 182 q10 10 20 0" fill="none" stroke="#0E7C86" stroke-width="2"/><path class="anim wave" style="animation-delay:0.8s" d="M344 186 q16 16 32 0" fill="none" stroke="#0E7C86" stroke-width="2"/><path class="anim wave" style="animation-delay:1.6s" d="M338 190 q22 22 44 0" fill="none" stroke="#0E7C86" stroke-width="2"/>
-        <rect x="438" y="170" width="16" height="9" rx="3" fill="#334155"/><path class="anim sweep" style="transform-origin:446px 176px" d="M446 176 L404 248 L462 250 Z" fill="#E89B00" opacity=".2"/>
-        <rect x="500" y="188" width="30" height="64" fill="#E2E8F0" stroke="#94A3B8"/><circle cx="523" cy="222" r="2" fill="#475569"/><rect x="486" y="208" width="10" height="16" rx="2" fill="#fff" stroke="#C27C00" stroke-width="1.5"/>
-        <circle cx="528" cy="174" r="4" fill="#C27C00" class="anim blink"/>
-        <line x1="60" y1="252" x2="540" y2="252" stroke="#14202E" stroke-width="3"/>
-        <rect x="62" y="254" width="476" height="98" fill="#F8FAFC"/><text x="70" y="266" font-family="Archivo,sans-serif" font-size="8" font-weight="800" letter-spacing=".08em" fill="#475569">STORES</text>
-        <rect x="92" y="272" width="120" height="80" fill="#F0FDF4" stroke="#1F8A4C" stroke-width="1.5"/><path d="M92 272h15l-2 12h-11z" fill="#1F8A4C"/><path d="M107 272h15l-2 12h-11z" fill="#fff"/><path d="M122 272h15l-2 12h-11z" fill="#1F8A4C"/><path d="M137 272h15l-2 12h-11z" fill="#fff"/><path d="M152 272h15l-2 12h-11z" fill="#1F8A4C"/><path d="M167 272h15l-2 12h-11z" fill="#fff"/><path d="M182 272h15l-2 12h-11z" fill="#1F8A4C"/><path d="M197 272h15l-2 12h-11z" fill="#fff"/><rect x="146" y="314" width="56" height="22" rx="2" fill="#E2E8F0"/><rect x="156" y="300" width="18" height="14" rx="2" fill="#14202E"/><rect x="159" y="303" width="12" height="8" fill="#4ADE80"/><rect x="104" y="296" width="6" height="40" fill="#BBF7D0"/><rect x="116" y="296" width="6" height="40" fill="#FBCFE8"/><rect x="128" y="296" width="6" height="40" fill="#BFDBFE"/>
-        <rect x="226" y="272" width="110" height="80" fill="#EFF6FF" stroke="#2357C6" stroke-width="1.5"/><path d="M226.0 272h13.75l-2 12h-9.75z" fill="#2357C6"/><path d="M239.75 272h13.75l-2 12h-9.75z" fill="#fff"/><path d="M253.5 272h13.75l-2 12h-9.75z" fill="#2357C6"/><path d="M267.25 272h13.75l-2 12h-9.75z" fill="#fff"/><path d="M281.0 272h13.75l-2 12h-9.75z" fill="#2357C6"/><path d="M294.75 272h13.75l-2 12h-9.75z" fill="#fff"/><path d="M308.5 272h13.75l-2 12h-9.75z" fill="#2357C6"/><path d="M322.25 272h13.75l-2 12h-9.75z" fill="#fff"/><rect x="240" y="296" width="30" height="20" rx="2" fill="#14202E"/><rect x="280" y="296" width="30" height="20" rx="2" fill="#14202E"/><rect x="244" y="300" width="22" height="12" fill="#60A5FA" class="anim glow"/><rect x="284" y="300" width="22" height="12" fill="#60A5FA" class="anim glow" style="animation-delay:1s"/><rect x="240" y="322" width="70" height="4" fill="#94A3B8"/>
-        <rect x="350" y="272" width="86" height="80" fill="#FFFBEB" stroke="#C27C00" stroke-width="1.5"/><path d="M350.0 272h10.75l-2 12h-6.75z" fill="#C27C00"/><path d="M360.75 272h10.75l-2 12h-6.75z" fill="#fff"/><path d="M371.5 272h10.75l-2 12h-6.75z" fill="#C27C00"/><path d="M382.25 272h10.75l-2 12h-6.75z" fill="#fff"/><path d="M393.0 272h10.75l-2 12h-6.75z" fill="#C27C00"/><path d="M403.75 272h10.75l-2 12h-6.75z" fill="#fff"/><path d="M414.5 272h10.75l-2 12h-6.75z" fill="#C27C00"/><path d="M425.25 272h10.75l-2 12h-6.75z" fill="#fff"/><rect x="380" y="316" width="44" height="20" rx="2" fill="#E2E8F0"/><rect x="388" y="306" width="10" height="8" rx="2" fill="#1F8A4C"/><rect x="360" y="296" width="14" height="40" fill="#FDE68A"/>
-        <g class=""><circle cx="200" cy="333" r="3.6" fill="#334155"/><rect x="196.5" y="337" width="7" height="10" rx="3" fill="#7C3AED"/><rect x="197" y="346" width="2.4" height="5" fill="#334155"/><rect x="200.6" y="346" width="2.4" height="5" fill="#334155"/></g><g class=""><circle cx="330" cy="333" r="3.6" fill="#334155"/><rect x="326.5" y="337" width="7" height="10" rx="3" fill="#0EA5E9"/><rect x="327" y="346" width="2.4" height="5" fill="#334155"/><rect x="330.6" y="346" width="2.4" height="5" fill="#334155"/></g>
-        <g class="anim walk"><g class=""><circle cx="470" cy="333" r="3.6" fill="#334155"/><rect x="466.5" y="337" width="7" height="10" rx="3" fill="#DB2777"/><rect x="467" y="346" width="2.4" height="5" fill="#334155"/><rect x="470.6" y="346" width="2.4" height="5" fill="#334155"/></g></g>
-        <rect x="452" y="266" width="6" height="86" fill="#1F8A4C"/><rect x="504" y="266" width="6" height="86" fill="#1F8A4C"/><rect x="461" y="300" width="40" height="52" fill="#E0F2FE" opacity=".6"/><text x="481" y="292" font-family="Archivo,sans-serif" font-size="8" font-weight="800" letter-spacing=".08em" fill="#1F8A4C" text-anchor="middle">ENTRY</text>
-        <rect x="60" y="352" width="480" height="52" fill="#0F172A" stroke="#14202E" stroke-width="3"/><rect x="62" y="354" width="476" height="48" fill="#0E7C86" opacity=".12"/>
-        <text x="70" y="370" font-family="Archivo,sans-serif" font-size="8" font-weight="800" letter-spacing=".08em" fill="#5EEAD4" text-anchor="start">SERVER ROOM</text>
-        <g transform="translate(40 4)"><rect x="110" y="358" width="18" height="32" rx="2" fill="#B91C1C"/><path d="M114 368h10M114 376h10" stroke="#fff" stroke-width="2"/><rect x="170" y="358" width="18" height="32" rx="2" fill="#475569"/><circle cx="176" cy="366" r="2" fill="#38BDF8"/><circle cx="182" cy="366" r="2" fill="#38BDF8"/><rect x="228" y="362" width="22" height="16" rx="2" fill="#334155"/><rect x="232" y="365" width="14" height="9" fill="#38BDF8" opacity=".6"/><rect x="234" y="378" width="10" height="8" fill="#64748B"/><rect x="288" y="358" width="20" height="32" rx="2" fill="#0E7C86"/><path d="M293 366 a5 5 0 1 0 10 0" fill="none" stroke="#fff" stroke-width="2"/><rect x="346" y="364" width="26" height="16" rx="2" fill="#334155"/><rect x="350" y="367" width="18" height="9" fill="#A78BFA" opacity=".7"/><rect x="342" y="380" width="34" height="4" fill="#64748B"/><rect x="420" y="358" width="18" height="32" rx="2" fill="#020617" stroke="#334155"/><rect x="424" y="364" width="10" height="2" fill="#22C55E" class=""/><rect x="424" y="371" width="10" height="2" fill="#22C55E" class="anim blink"/><rect x="424" y="378" width="10" height="2" fill="#22C55E" class=""/><rect x="446" y="358" width="18" height="32" rx="2" fill="#020617" stroke="#334155"/><rect x="450" y="364" width="10" height="2" fill="#22C55E" class=""/><rect x="450" y="371" width="10" height="2" fill="#22C55E" class="anim blink"/><rect x="450" y="378" width="10" height="2" fill="#22C55E" class=""/><rect x="472" y="358" width="18" height="32" rx="2" fill="#020617" stroke="#334155"/><rect x="476" y="364" width="10" height="2" fill="#22C55E" class="anim blink"/><rect x="476" y="371" width="10" height="2" fill="#22C55E" class=""/><rect x="476" y="378" width="10" height="2" fill="#22C55E" class="anim blink"/></g>
-        <text x="594" y="404" font-family="Archivo,sans-serif" font-size="8" font-weight="800" letter-spacing=".08em" fill="#475569" text-anchor="middle">PARKING</text>
-        <rect x="566" y="322" width="12" height="34" rx="2" fill="#475569"/><rect x="564" y="318" width="16" height="8" rx="2" fill="#C27C00"/><g class="anim boom" style="transform-origin:572px 324px"><rect x="572" y="320" width="64" height="7" rx="3" fill="#C27C00"/><rect x="588" y="321" width="8" height="5" fill="#fff"/><rect x="608" y="321" width="8" height="5" fill="#fff"/></g>
-        
-        <g class="hot" data-k="cctv" tabindex="0" role="button" aria-label="Video surveillance" style="--c:#E89B00"><circle class="pulse" cx="446" cy="188" r="11" fill="#E89B00"/><circle class="ring" cx="446" cy="188" r="11" stroke="#E89B00"/></g>
-        <g class="hot" data-k="pos" tabindex="0" role="button" aria-label="POS billing" style="--c:#1F8A4C"><circle class="pulse" cx="174" cy="302" r="11" fill="#1F8A4C"/><circle class="ring" cx="174" cy="302" r="11" stroke="#1F8A4C"/></g>
-        <g class="hot" data-k="barcode" tabindex="0" role="button" aria-label="Barcode and RFID" style="--c:#1F8A4C"><circle class="pulse" cx="398" cy="300" r="11" fill="#1F8A4C"/><circle class="ring" cx="398" cy="300" r="11" stroke="#1F8A4C"/></g>
-        <g class="hot" data-k="eas" tabindex="0" role="button" aria-label="Anti-theft gates" style="--c:#1F8A4C"><circle class="pulse" cx="481" cy="318" r="11" fill="#1F8A4C"/><circle class="ring" cx="481" cy="318" r="11" stroke="#1F8A4C"/></g>
-        <g class="hot" data-k="fire" tabindex="0" role="button" aria-label="Fire alarm" style="--c:#E89B00"><circle class="pulse" cx="486" cy="100" r="11" fill="#E89B00"/><circle class="ring" cx="486" cy="100" r="11" stroke="#E89B00"/></g>
-        <g class="hot" data-k="access" tabindex="0" role="button" aria-label="Access control" style="--c:#E89B00"><circle class="pulse" cx="491" cy="238" r="11" fill="#E89B00"/><circle class="ring" cx="491" cy="238" r="11" stroke="#E89B00"/></g>
-        <g class="hot" data-k="intrusion" tabindex="0" role="button" aria-label="Intrusion detection" style="--c:#E89B00"><circle class="pulse" cx="526" cy="192" r="11" fill="#E89B00"/><circle class="ring" cx="526" cy="192" r="11" stroke="#E89B00"/></g>
-        <g class="hot" data-k="gate" tabindex="0" role="button" aria-label="Entrance control" style="--c:#E89B00"><circle class="pulse" cx="604" cy="306" r="11" fill="#E89B00"/><circle class="ring" cx="604" cy="306" r="11" stroke="#E89B00"/></g>
-        <g class="hot" data-k="intercom" tabindex="0" role="button" aria-label="Intercom systems" style="--c:#E89B00"><circle class="pulse" cx="261" cy="240" r="11" fill="#E89B00"/><circle class="ring" cx="261" cy="240" r="11" stroke="#E89B00"/></g>
-        <g class="hot" data-k="net" tabindex="0" role="button" aria-label="Network and Wi-Fi" style="--c:#0E7C86"><circle class="pulse" cx="376" cy="188" r="11" fill="#0E7C86"/><circle class="ring" cx="376" cy="188" r="11" stroke="#0E7C86"/></g>
-        <g class="hot" data-k="cyber" tabindex="0" role="button" aria-label="Cyber security" style="--c:#0E7C86"><circle class="pulse" cx="186" cy="378" r="11" fill="#0E7C86"/><circle class="ring" cx="186" cy="378" r="11" stroke="#0E7C86"/></g>
-        <g class="hot" data-k="storage" tabindex="0" role="button" aria-label="Data storage" style="--c:#0E7C86"><circle class="pulse" cx="246" cy="378" r="11" fill="#0E7C86"/><circle class="ring" cx="246" cy="378" r="11" stroke="#0E7C86"/></g>
-        <g class="hot" data-k="vdi" tabindex="0" role="button" aria-label="VDI and virtualization" style="--c:#0E7C86"><circle class="pulse" cx="308" cy="378" r="11" fill="#0E7C86"/><circle class="ring" cx="308" cy="378" r="11" stroke="#0E7C86"/></g>
-        <g class="hot" data-k="backup" tabindex="0" role="button" aria-label="Backup and disaster recovery" style="--c:#0E7C86"><circle class="pulse" cx="368" cy="378" r="11" fill="#0E7C86"/><circle class="ring" cx="368" cy="378" r="11" stroke="#0E7C86"/></g>
-        <g class="hot" data-k="cloud" tabindex="0" role="button" aria-label="Cloud services" style="--c:#0E7C86"><circle class="pulse" cx="594" cy="66" r="11" fill="#0E7C86"/><circle class="ring" cx="594" cy="66" r="11" stroke="#0E7C86"/></g>
-        <g class="hot" data-k="lic" tabindex="0" role="button" aria-label="Licensed software" style="--c:#0E7C86"><circle class="pulse" cx="432" cy="378" r="11" fill="#0E7C86"/><circle class="ring" cx="432" cy="378" r="11" stroke="#0E7C86"/></g>
-        <g class="hot" data-k="av" tabindex="0" role="button" aria-label="Projection, audio and video" style="--c:#2357C6"><circle class="pulse" cx="166" cy="124" r="11" fill="#2357C6"/><circle class="ring" cx="166" cy="124" r="11" stroke="#2357C6"/></g>
-        <g class="hot" data-k="pa" tabindex="0" role="button" aria-label="PA system" style="--c:#2357C6"><circle class="pulse" cx="272" cy="106" r="11" fill="#2357C6"/><circle class="ring" cx="272" cy="106" r="11" stroke="#2357C6"/></g>
-        <g class="hot" data-k="lms" tabindex="0" role="button" aria-label="Light management system" style="--c:#2357C6"><circle class="pulse" cx="408" cy="100" r="11" fill="#2357C6"/><circle class="ring" cx="408" cy="100" r="11" stroke="#2357C6"/></g>
-        <g class="hot" data-k="auto" tabindex="0" role="button" aria-label="Home and office automation" style="--c:#2357C6"><circle class="pulse" cx="196" cy="182" r="11" fill="#2357C6"/><circle class="ring" cx="196" cy="182" r="11" stroke="#2357C6"/></g>
-        <g class="hot" data-k="web" tabindex="0" role="button" aria-label="Website development" style="--c:#6B4FBB"><circle class="pulse" cx="603" cy="138" r="11" fill="#6B4FBB"/><circle class="ring" cx="603" cy="138" r="11" stroke="#6B4FBB"/></g>
-        <g class="hot" data-k="email" tabindex="0" role="button" aria-label="Business email and domains" style="--c:#6B4FBB"><circle class="pulse" cx="603" cy="162" r="11" fill="#6B4FBB"/><circle class="ring" cx="603" cy="162" r="11" stroke="#6B4FBB"/></g>
-        <g class="hot" data-k="android" tabindex="0" role="button" aria-label="Android app development" style="--c:#6B4FBB"><circle class="pulse" cx="603" cy="186" r="11" fill="#6B4FBB"/><circle class="ring" cx="603" cy="186" r="11" stroke="#6B4FBB"/></g>
-        <g class="hot" data-k="webapp" tabindex="0" role="button" aria-label="Web app development" style="--c:#6B4FBB"><circle class="pulse" cx="603" cy="210" r="11" fill="#6B4FBB"/><circle class="ring" cx="603" cy="210" r="11" stroke="#6B4FBB"/></g>
-        </svg>
-      <div class="info" id="info" aria-live="polite"></div>
-      <div class="ctrl"><button type="button" id="prev" aria-label="Previous service">&#8249;</button><button type="button" id="play" aria-label="Pause slideshow">&#10073;&#10073;</button><div class="bar"><i id="bar"></i></div><span class="count" id="count"></span><button type="button" id="next" aria-label="Next service">&#8250;</button></div>
-      <div class="legend"><span style="--c:#E89B00">Security &amp; safety</span><span style="--c:#1F8A4C">Retail &amp; RFID</span><span style="--c:#0E7C86">IT &amp; networking</span><span style="--c:#2357C6">AV &amp; automation</span><span style="--c:#6B4FBB">Digital &amp; software</span></div>
-      <figcaption class="hint">Services change automatically. Tap any point to pick one.</figcaption>
+    <figure class="plan cs" aria-roledescription="carousel" aria-label="Our services by category">
+      <div class="cs-top"><span class="cs-title">What we do</span><button type="button" class="cs-music" id="csMusic" aria-pressed="false" aria-label="Turn music on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="on" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/><path class="off" d="M16 9l6 6M22 9l-6 6"/></svg><span>Music</span></button></div>
+      <div class="cs-vp"><div class="cs-track" id="csTrack"></div></div>
+      <div class="cs-nav"><button type="button" id="csPrev" aria-label="Previous category">&#8249;</button><div class="cs-dots" id="csDots"></div><button type="button" id="csPlay" aria-label="Pause slideshow">&#10073;&#10073;</button><button type="button" id="csNext" aria-label="Next category">&#8250;</button></div>
     </figure>
   </div>
 </section>
@@ -551,68 +516,111 @@ footer b{color:#fff;font-weight:650}
 
 <script>
 (function(){
-  var D={
-    cctv:["Security & safety","Video Surveillance","CCTV cameras","Cameras cover the food court, stores and entrances. Watch live and play back recordings from your phone.","#E89B00"],
-    pos:["Retail & RFID","POS billing","","Billing software with touch terminal, receipt printer and cash drawer. GST bills and stock reports.","#1F8A4C"],
-    barcode:["Retail & RFID","Barcode & RFID","","Scan items at the counter, print your own barcode labels and track stock with RFID tags.","#1F8A4C"],
-    eas:["Retail & RFID","Anti-theft gates","EAS","Gates at the entry sound an alarm if a tagged item leaves without billing.","#1F8A4C"],
-    fire:["Security & safety","Fire alarm","","Smoke and heat detectors raise the alarm early, wired to a central control panel.","#E89B00"],
-    access:["Security & safety","Access control","","Fingerprint, card or face locks on staff doors, plus video door phones to see visitors first.","#E89B00"],
-    intrusion:["Security & safety","Intrusion detection","Burglar alarm","Motion and door sensors sound a siren and alert your phone if anyone enters after closing.","#E89B00"],
-    gate:["Security & safety","Entrance control","Turnstiles, boom barriers & gates","Control who comes in at parking, offices, factories and societies, on foot or by vehicle.","#E89B00"],
-    intercom:["Security & safety","Intercom systems","","Talk instantly between counters, cabins, floors and the security gate at the press of a button.","#E89B00"],
-    net:["IT & networking","Networking & Wi-Fi","","Structured cabling, racks and switches, with Wi-Fi that reaches every corner.","#0E7C86"],
-    cyber:["IT & networking","Cyber security","","Firewalls, endpoint protection and antivirus, set up and managed for you.","#0E7C86"],
-    storage:["IT & networking","Data storage","NAS / SAN","Central storage that keeps business data safe and easy to reach for every team.","#0E7C86"],
-    vdi:["IT & networking","VDI & virtualization","","Virtual desktops, server virtualization and thin clients for flexible, secure access.","#0E7C86"],
-    backup:["IT & networking","Backup & disaster recovery","","Automatic backups and quick recovery, so work doesn't stop after a failure.","#0E7C86"],
-    cloud:["IT & networking","Cloud services","","Microsoft 365, cloud servers and moving your systems to the cloud.","#0E7C86"],
-    lic:["IT & networking","Licensed software","","Genuine licences for Microsoft, Adobe, Autodesk, antivirus and more, with installation and support.","#0E7C86"],
-    av:["AV & automation","Projection, audio & video","","Projectors, screens and sound for cinemas, meeting rooms, classrooms and halls.","#2357C6"],
-    pa:["AV & automation","PA system","","Announcements and background music for malls, shops, offices, factories and schools.","#2357C6"],
-    lms:["AV & automation","Light Management System","LMS","Lights switch by schedule or sensor, so you never pay to light an empty space.","#2357C6"],
-    auto:["AV & automation","Home & office automation","","Control lights, AC, curtains and locks from your phone or by voice.","#2357C6"],
-    web:["Digital & software","Website development","","Fast, mobile-friendly business websites, with hosting and updates included.","#6B4FBB"],
-    email:["Digital & software","Business email & domains","","Your own domain name and professional email such as info@yourbusiness.com.","#6B4FBB"],
-    android:["Digital & software","Android app development","","Custom apps for your customers or staff, published on Google Play.","#6B4FBB"],
-    webapp:["Digital & software","Web app development","","Online software such as billing, CRM, order and stock management, built around your business.","#6B4FBB"]
-  };
-
-  var order=Object.keys(D), info=document.getElementById('info'), hots=document.querySelectorAll('.hot'),
-      bar=document.getElementById('bar'), count=document.getElementById('count'), play=document.getElementById('play'),
-      plan=document.querySelector('.plan'), DUR=5000, idx=0, t0=0, raf=0, paused=false, hover=false, visible=true, holdUntil=0,
+  var K=[
+  {n:"Retail & RFID",c:"#1F8A4C",sub:"For shops, marts and showrooms",
+  svg:'<rect width="400" height="210" fill="#F0FDF4"/><rect y="180" width="400" height="30" fill="#DCFCE7"/>'+
+  [30,70,110].map(function(x){return '<rect x="'+x+'" y="60" width="30" height="120" rx="2" fill="#fff" stroke="#BBF7D0"/>'+[72,102,132,162].map(function(y,k){return '<rect x="'+(x+4)+'" y="'+y+'" width="22" height="16" rx="2" fill="'+["#FBCFE8","#BFDBFE","#FDE68A","#BBF7D0"][k]+'"/>'}).join('')}).join('')+
+  '<rect x="190" y="130" width="120" height="50" rx="4" fill="#fff" stroke="#1F8A4C" stroke-width="2"/><rect x="220" y="96" width="44" height="32" rx="3" fill="#14202E"/><rect x="225" y="101" width="34" height="20" fill="#4ADE80" class="a-glow"/><rect x="238" y="128" width="8" height="6" fill="#475569"/><rect x="270" y="118" width="20" height="12" rx="2" fill="#E2E8F0"/>'+
+  '<g transform="translate(296 92)"><path d="M0 0 l14 -6 l6 14 l-8 4 l-2 20 h-6 l2 -18 z" fill="#1F8A4C"/><rect class="a-scan" x="-14" y="10" width="14" height="2" fill="#EF4444"/></g>'+
+  '<rect x="340" y="80" width="8" height="100" rx="2" fill="#1F8A4C"/><rect x="380" y="80" width="8" height="100" rx="2" fill="#1F8A4C"/><circle cx="344" cy="76" r="4" fill="#EF4444" class="a-beep"/><circle cx="384" cy="76" r="4" fill="#EF4444" class="a-beep"/>'+
+  '<g class="a-walk"><circle cx="372" cy="128" r="6" fill="#334155"/><rect x="366" y="135" width="12" height="22" rx="4" fill="#DB2777"/><rect x="367" y="157" width="4" height="20" fill="#334155"/><rect x="373" y="157" width="4" height="20" fill="#334155"/><rect x="378" y="142" width="10" height="12" rx="2" fill="#FDE68A"/></g>',
+  s:[["POS billing","Billing software and hardware with GST bills and stock reports.",242,90],["RFID & barcode","Scanners, label printers and RFID tags for fast checkout and stock control.",306,82],["EAS anti-theft","Gates sound an alarm if a tagged item leaves without billing.",364,70]]},
+  {n:"Security & safety",c:"#C27C00",sub:"For homes, offices, societies and factories",
+  svg:'<rect width="400" height="210" fill="#FFFBEB"/><rect y="182" width="400" height="28" fill="#E5E7EB"/>'+
+  '<rect x="60" y="50" width="180" height="132" fill="#fff" stroke="#334155" stroke-width="2"/><path d="M50 50 L150 14 L250 50 Z" fill="#94A3B8"/>'+[80,130,180].map(function(x){return '<rect x="'+x+'" y="70" width="34" height="28" fill="#DBEAFE"/>'}).join('')+'<rect x="128" y="124" width="40" height="58" fill="#78350F"/><rect x="174" y="140" width="12" height="18" rx="2" fill="#E2E8F0" stroke="#C27C00"/><circle cx="180" cy="146" r="2.5" fill="#C27C00" class="a-blink"/>'+
+  '<rect x="84" y="118" width="16" height="22" rx="3" fill="#E2E8F0" stroke="#C27C00"/><rect x="87" y="122" width="10" height="5" fill="#C27C00"/>'+
+  '<circle cx="205" cy="60" r="6" fill="#F8FAFC" stroke="#DC2626" stroke-width="2"/><circle cx="205" cy="60" r="2" fill="#DC2626" class="a-blink"/>'+
+  '<rect x="228" y="56" width="16" height="9" rx="3" fill="#334155"/><path class="a-sweep" style="transform-origin:236px 62px" d="M236 62 L196 150 L260 156 Z" fill="#E89B00" opacity=".2"/>'+
+  '<circle cx="70" cy="58" r="5" fill="#C27C00" class="a-blink"/>'+
+  '<rect x="268" y="118" width="10" height="64" fill="#475569"/><g class="a-boom" style="transform-origin:273px 124px"><rect x="273" y="120" width="96" height="8" rx="3" fill="#C27C00"/><g fill="#fff"><rect x="296" y="121" width="10" height="6"/><rect x="326" y="121" width="10" height="6"/><rect x="356" y="121" width="10" height="6"/></g></g>'+
+  '<rect x="300" y="150" width="6" height="32" fill="#94A3B8"/><rect x="330" y="150" width="6" height="32" fill="#94A3B8"/><path d="M306 160 h24" stroke="#94A3B8" stroke-width="3" class="a-spin"/>',
+  s:[["Video surveillance","CCTV with live and recorded viewing on your phone.",236,46],["Fire alarm","Smoke and heat detectors wired to a control panel.",205,40],["Access control","Fingerprint, card or face locks, plus video door phones.",194,148],["Intrusion detection","Motion and door sensors with siren and phone alerts.",70,40],["Entrance control","Boom barriers, turnstiles and gates for people and vehicles.",330,100],["Intercom systems","Instant calling between cabins, floors and the gate.",92,104]]},
+  {n:"IT & networking",c:"#0E7C86",sub:"For offices, schools, hospitals and growing businesses",
+  svg:'<rect width="400" height="210" fill="#ECFEFF"/><rect y="186" width="400" height="24" fill="#CFFAFE"/>'+
+  '<path d="M300 44a18 18 0 0 1 34-6 15 15 0 0 1 26 9 12 12 0 0 1-4 24h-52a14 14 0 0 1-4-27z" fill="#fff" stroke="#0E7C86" stroke-width="2"/>'+
+  '<path d="M90 70 C 150 20, 250 20, 304 56" fill="none" stroke="#0E7C86" stroke-dasharray="3 5" opacity=".6"/><circle r="4" fill="#0E7C86" class="a-pkt" style="offset-path:path(\'M90 70 C 150 20, 250 20, 304 56\')"/><circle r="4" fill="#0E7C86" class="a-pkt" style="offset-path:path(\'M90 70 C 150 20, 250 20, 304 56\');animation-delay:1.1s"/>'+
+  '<rect x="60" y="70" width="56" height="116" rx="3" fill="#0F172A"/>'+[82,98,114,130,146,162].map(function(y,k){return '<rect x="66" y="'+y+'" width="44" height="10" rx="1" fill="#1E293B"/><circle cx="104" cy="'+(y+5)+'" r="2" fill="#22C55E" class="'+(k%2?'a-blink':'')+'"/>'}).join('')+
+  '<path class="a-wave" d="M74 66 q14-14 28 0"/><path class="a-wave" style="animation-delay:.8s" d="M68 62 q20-20 40 0"/>'+
+  '<rect x="126" y="150" width="40" height="18" rx="2" fill="#B91C1C"/><path d="M134 159h24" stroke="#fff" stroke-width="2"/><rect x="126" y="112" width="40" height="32" rx="2" fill="#475569"/><circle cx="134" cy="122" r="2.5" fill="#38BDF8"/><circle cx="144" cy="122" r="2.5" fill="#38BDF8"/><circle cx="154" cy="122" r="2.5" fill="#38BDF8"/>'+
+  '<rect x="180" y="128" width="30" height="40" rx="3" fill="#0E7C86"/><path d="M188 142 a7 7 0 1 0 14 0" fill="none" stroke="#fff" stroke-width="2.5" class="a-spin"/>'+
+  '<rect x="232" y="120" width="56" height="36" rx="3" fill="#0F172A"/><rect x="237" y="125" width="46" height="26" fill="#A5F3FC"/><rect x="254" y="156" width="12" height="10" fill="#475569"/><rect x="242" y="166" width="36" height="4" fill="#94A3B8"/>'+
+  '<rect x="306" y="134" width="62" height="36" rx="3" fill="#334155"/><rect x="311" y="139" width="52" height="26" fill="#E0E7FF"/><path d="M318 152 l6 6 l12 -12" stroke="#0E7C86" stroke-width="3" fill="none"/><rect x="298" y="170" width="78" height="5" rx="2" fill="#94A3B8"/>',
+  s:[["Networking & Wi-Fi","Cabling, racks, switches and full-coverage Wi-Fi.",88,58],["Cyber security","Firewalls, endpoint protection and antivirus, managed.",146,178],["Data storage","NAS and SAN storage that keeps data safe and accessible.",146,104],["Backup & disaster recovery","Automatic backups and quick recovery after any failure.",195,118],["Cloud services","Microsoft 365, cloud servers and cloud migration.",330,30],["VDI & virtualization","Virtual desktops, server virtualization and thin clients.",260,110],["Licensed software","Genuine Microsoft, Adobe, Autodesk and antivirus licences.",337,124]]},
+  {n:"AV & automation",c:"#2357C6",sub:"For meeting rooms, halls, schools and smart homes",
+  svg:'<rect width="400" height="210" fill="#EFF6FF"/><rect y="180" width="400" height="30" fill="#DBEAFE"/>'+
+  '<rect x="40" y="40" width="160" height="96" rx="3" fill="#0F172A"/><rect x="46" y="46" width="148" height="84" fill="#DBEAFE" class="a-glow"/><path d="M60 118 l26-26 18 14 26-28 40 40" fill="none" stroke="#2357C6" stroke-width="3"/>'+
+  '<path d="M270 30 L200 46 L200 130 Z" fill="#FDE68A" opacity=".25" class="a-glow"/><rect x="262" y="22" width="22" height="14" rx="3" fill="#475569"/>'+
+  '<rect x="214" y="70" width="18" height="30" rx="4" fill="#1E293B"/><circle cx="223" cy="90" r="5" fill="#64748B"/><text class="a-note" x="236" y="74" font-size="14" fill="#2357C6">&#9834;</text><text class="a-note" x="236" y="80" font-size="12" fill="#2357C6" style="animation-delay:1.4s">&#9835;</text>'+
+  '<rect x="70" y="150" width="120" height="8" rx="3" fill="#94A3B8"/><rect x="80" y="158" width="6" height="22" fill="#94A3B8"/><rect x="174" y="158" width="6" height="22" fill="#94A3B8"/>'+
+  '<circle cx="320" cy="44" r="12" fill="#FDE68A" class="a-glow"/><circle cx="320" cy="44" r="6" fill="#F59E0B"/><path d="M320 20 v12" stroke="#64748B" stroke-width="2"/>'+
+  '<rect x="300" y="100" width="64" height="20" rx="4" fill="#fff" stroke="#93C5FD"/><path d="M308 124 v6 M320 124 v8 M332 124 v6 M344 124 v8" stroke="#93C5FD" stroke-width="2" class="a-glow"/>'+
+  '<rect x="252" y="128" width="30" height="52" rx="6" fill="#1E293B"/><rect x="256" y="136" width="22" height="36" rx="2" fill="#EFF6FF"/><circle cx="267" cy="148" r="5" fill="#2357C6"/><rect x="260" y="158" width="14" height="3" fill="#93C5FD"/>',
+  s:[["Projection, audio & video","Projectors, screens and sound for rooms and halls.",120,88],["PA system","Announcements and background music for any space.",223,58],["Light management (LMS)","Lights by schedule or sensor, never wasting power.",342,44],["Home & office automation","Lights, AC, curtains and locks from your phone.",267,118]]},
+  {n:"Digital & software",c:"#6B4FBB",sub:"For businesses that want to grow online",
+  svg:'<rect width="400" height="210" fill="#F5F3FF"/>'+
+  '<rect x="60" y="40" width="200" height="124" rx="6" fill="#1E293B"/><rect x="66" y="46" width="188" height="112" fill="#fff"/><rect x="66" y="46" width="188" height="14" fill="#EDE9FE"/><circle cx="74" cy="53" r="2.5" fill="#F87171"/><circle cx="82" cy="53" r="2.5" fill="#FBBF24"/><circle cx="90" cy="53" r="2.5" fill="#34D399"/>'+
+  '<rect x="76" y="68" width="80" height="10" rx="2" fill="#6B4FBB"/><rect class="a-type" x="76" y="84" height="6" rx="2" fill="#C4B5FD"/><rect x="76" y="100" width="50" height="40" rx="3" fill="#EDE9FE"/><rect x="132" y="100" width="50" height="40" rx="3" fill="#EDE9FE"/><rect x="188" y="100" width="56" height="18" rx="3" fill="#DDD6FE"/><rect x="188" y="122" width="56" height="18" rx="3" fill="#DDD6FE"/>'+
+  '<rect x="40" y="164" width="240" height="8" rx="3" fill="#94A3B8"/>'+
+  '<rect x="292" y="56" width="64" height="120" rx="11" fill="#1E293B"/><rect x="297" y="66" width="54" height="98" rx="3" fill="#F5F3FF"/><rect x="302" y="72" width="44" height="10" rx="2" fill="#6B4FBB"/><rect x="302" y="88" width="20" height="20" rx="4" fill="#C4B5FD"/><rect x="326" y="88" width="20" height="20" rx="4" fill="#DDD6FE"/><rect x="302" y="112" width="20" height="20" rx="4" fill="#DDD6FE"/><rect x="326" y="112" width="20" height="20" rx="4" fill="#C4B5FD"/><rect x="302" y="146" width="44" height="10" rx="5" fill="#6B4FBB"/>'+
+  '<g class="a-glow"><rect x="350" y="30" width="38" height="24" rx="4" fill="#fff" stroke="#6B4FBB"/><path d="M352 32 l17 12 l17 -12" fill="none" stroke="#6B4FBB" stroke-width="1.5"/></g>',
+  s:[["Website development","Fast, mobile-friendly business websites, with hosting and updates.",116,62],["Business email & domains","Your own domain and professional email like info@yourbusiness.com.",369,22],["Android app development","Custom apps published on Google Play.",324,98],["Web app development","Billing, CRM, order and stock software built around how you work.",214,128]]}];
+  var track=document.getElementById('csTrack'),dots=document.getElementById('csDots'),fig=document.querySelector('.cs'),play=document.getElementById('csPlay'),
+      ci=0,si=0,paused=false,hover=false,visible=true,holdUntil=0,cards=[],
       still=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function show(i,back){
-    idx=(i+order.length)%order.length; var k=order[idx], d=D[k];
-    hots.forEach(function(h){h.classList.toggle('on',h.dataset.k===k)});
-    info.style.borderLeftColor=d[4]; plan.style.setProperty('--c',d[4]);
-    info.innerHTML='<div class="slide'+(back?' back':'')+'"><span class="tag">'+d[0]+'</span><h3>'+d[1]+(d[2]?' <small>('+d[2]+')</small>':'')+'</h3><p>'+d[3]+'</p></div>';
-    count.textContent=(idx+1)+' / '+order.length; t0=performance.now(); bar.style.width='0';
-  }
-  function running(){return !paused&&!hover&&visible&&!document.hidden&&performance.now()>holdUntil}
-  function tick(now){
-    if(running()){
-      if(!t0)t0=now; var p=(now-t0)/DUR;
-      if(p>=1){show(idx+1)} else bar.style.width=(p*100)+'%';
-    } else t0=now-(parseFloat(bar.style.width)||0)/100*DUR;
-    raf=requestAnimationFrame(tick);
-  }
-  function hold(){holdUntil=performance.now()+12000}
-  function setPaused(v){paused=v;play.innerHTML=v?'&#9654;':'&#10073;&#10073;';play.setAttribute('aria-label',v?'Play slideshow':'Pause slideshow')}
-  hots.forEach(function(h){
-    function pick(){var i=order.indexOf(h.dataset.k);show(i,i<idx);hold()}
-    h.addEventListener('click',pick);
-    h.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();pick()}});
+  K.forEach(function(k,i){
+    var d=document.createElement('div');d.className='cs-card';d.style.setProperty('--c',k.c);d.setAttribute('role','group');d.setAttribute('aria-label',k.n+', '+(i+1)+' of '+K.length);
+    var hs=k.s.map(function(x,j){return '<g class="cs-hs" data-j="'+j+'" tabindex="0" role="button" aria-label="'+x[0]+'"><circle class="p" cx="'+x[2]+'" cy="'+x[3]+'" r="9"/><circle class="r" cx="'+x[2]+'" cy="'+x[3]+'" r="9" stroke="'+k.c+'"/></g>'}).join('');
+    d.innerHTML='<div class="cs-hd"><b>'+k.n+'</b><span>'+k.sub+'</span></div><svg viewBox="0 0 400 210" aria-hidden="false">'+k.svg+hs+'</svg><div class="cs-det" aria-live="polite"></div><div class="cs-chips">'+k.s.map(function(x,j){return '<button type="button" data-j="'+j+'">'+x[0]+'</button>'}).join('')+'</div>';
+    track.appendChild(d);cards.push(d);
+    d.querySelectorAll('[data-j]').forEach(function(el){
+      function pick(){ci=i;si=+el.dataset.j;draw();hold()}
+      el.addEventListener('click',pick);
+      el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();pick()}});
+    });
+    var dt=document.createElement('button');dt.type='button';dt.setAttribute('aria-label',k.n);dt.addEventListener('click',function(){ci=i;si=0;draw();hold()});dots.appendChild(dt);
   });
-  document.getElementById('next').addEventListener('click',function(){show(idx+1);hold()});
-  document.getElementById('prev').addEventListener('click',function(){show(idx-1,true);hold()});
-  play.addEventListener('click',function(){setPaused(!paused);holdUntil=0});
-  plan.addEventListener('mouseenter',function(){hover=true});
-  plan.addEventListener('mouseleave',function(){hover=false});
-  if('IntersectionObserver' in window)new IntersectionObserver(function(e){visible=e[0].isIntersecting}).observe(plan);
-  show(0);
+  function draw(){
+    track.style.transform='translateX('+(-ci*100)+'%)';
+    var k=K[ci],c=cards[ci],x=k.s[si];
+    cards.forEach(function(cd,j){cd.setAttribute('aria-hidden',j===ci?'false':'true')});
+    c.querySelectorAll('.cs-hs').forEach(function(h,j){h.classList.toggle('on',j===si)});
+    c.querySelectorAll('.cs-chips button').forEach(function(h,j){h.classList.toggle('on',j===si)});
+    c.querySelector('.cs-det').innerHTML='<b>'+x[0]+'</b><span>'+x[1]+'</span>';
+    fig.style.setProperty('--c',k.c);
+    [].forEach.call(dots.children,function(d,j){d.classList.toggle('on',j===ci)});
+  }
+  function hold(){holdUntil=Date.now()+10000}
+  function running(){return !paused&&!hover&&visible&&!document.hidden&&Date.now()>holdUntil}
+  function next(){si++;if(si>=K[ci].s.length){si=0;ci=(ci+1)%K.length}draw()}
+  setInterval(function(){if(running())next()},2800);
+  document.getElementById('csNext').addEventListener('click',function(){ci=(ci+1)%K.length;si=0;draw();hold()});
+  document.getElementById('csPrev').addEventListener('click',function(){ci=(ci-1+K.length)%K.length;si=0;draw();hold()});
+  function setPaused(v){paused=v;play.innerHTML=v?'&#9654;':'&#10073;&#10073;';play.setAttribute('aria-label',v?'Play slideshow':'Pause slideshow')}
+  play.addEventListener('click',function(){setPaused(!paused)});
+  fig.addEventListener('mouseenter',function(){hover=true});fig.addEventListener('mouseleave',function(){hover=false});
+  if('IntersectionObserver' in window)new IntersectionObserver(function(e){visible=e[0].isIntersecting}).observe(fig);
+  var tx=null;track.addEventListener('touchstart',function(e){tx=e.touches[0].clientX},{passive:true});
+  track.addEventListener('touchend',function(e){if(tx===null)return;var dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40){ci=(ci+(dx<0?1:-1)+K.length)%K.length;si=0;draw();hold()}tx=null},{passive:true});
+  draw();
   if(still)setPaused(true);
-  raf=requestAnimationFrame(tick);
+
+  // Background music: an original ambient tune generated in the browser (no audio file). Off by default.
+  var mBtn=document.getElementById('csMusic'),ac=null,master=null,mOn=false,loopT=null,step=0;
+  var CH=[[261.63,329.63,392.00,493.88],[220.00,261.63,329.63,392.00],[174.61,220.00,261.63,329.63],[196.00,246.94,293.66,392.00]];
+  function note(f,t,d,type,vol){var o=ac.createOscillator(),g=ac.createGain();o.type=type;o.frequency.value=f;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(vol,t+0.04);g.gain.exponentialRampToValueAtTime(0.0001,t+d);o.connect(g);g.connect(master);o.start(t);o.stop(t+d+0.05)}
+  function bar(){var t=ac.currentTime+0.05,c=CH[Math.floor(step/8)%4];
+    if(step%8===0)c.forEach(function(f){note(f/2,t,3.4,'sine',0.05)});
+    note(c[[0,1,2,3,2,1,2,3][step%8]]*2,t,0.9,'triangle',0.035);
+    step++;}
+  function startMusic(){
+    if(!ac){var AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;ac=new AC();master=ac.createGain();master.gain.value=0;var lp=ac.createBiquadFilter();lp.type='lowpass';lp.frequency.value=1800;master.connect(lp);lp.connect(ac.destination)}
+    ac.resume();master.gain.cancelScheduledValues(ac.currentTime);master.gain.setTargetAtTime(0.9,ac.currentTime,0.6);
+    if(!loopT){bar();loopT=setInterval(bar,430)}
+  }
+  function stopMusic(){if(!ac)return;master.gain.setTargetAtTime(0,ac.currentTime,0.3);setTimeout(function(){if(!mOn){clearInterval(loopT);loopT=null;ac.suspend()}},1200)}
+  function setMusic(v){mOn=v;mBtn.setAttribute('aria-pressed',v?'true':'false');mBtn.setAttribute('aria-label',v?'Mute music':'Turn music on');mBtn.classList.toggle('on',v);if(v)startMusic();else stopMusic()}
+  mBtn.addEventListener('click',function(){setMusic(!mOn)});
+  document.addEventListener('visibilitychange',function(){if(!ac||!mOn)return;if(document.hidden)ac.suspend();else ac.resume()});
 
   document.getElementById('enq').addEventListener('submit',function(e){
     e.preventDefault();
