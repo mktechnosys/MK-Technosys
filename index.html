@@ -85,6 +85,7 @@ nav a:hover,nav a:focus-visible{background:#2357C6;color:#fff;outline:none}
 .hot text{font:700 13px var(--f);text-anchor:middle;dominant-baseline:central;pointer-events:none}
 .hot:hover circle.ring,.hot:focus circle.ring,.hot.on circle.ring{stroke-width:5}
 .hot:focus{outline:none}
+.hot.on circle.ring{fill:var(--c)}
 .hot.on .pulse{animation:pulse 1.6s ease-out infinite}
 @keyframes pulse{from{r:13;opacity:.55}to{r:26;opacity:0}}
 .info{margin-top:10px;background:var(--paper);border-radius:12px;padding:14px 16px 12px;min-height:128px;border-left:5px solid var(--sec);overflow:hidden;position:relative;transition:border-color .4s}
@@ -102,6 +103,25 @@ nav a:hover,nav a:focus-visible{background:#2357C6;color:#fff;outline:none}
 .ctrl .bar{flex:1;height:4px;border-radius:4px;background:var(--line);overflow:hidden}
 .ctrl .bar i{display:block;height:100%;width:0;background:var(--c,#E89B00)}
 .ctrl .count{font-size:.8rem;color:var(--ink-2);min-width:42px;text-align:right;font-variant-numeric:tabular-nums}
+.plan .anim.car{animation:mallCar 10s linear infinite}
+@keyframes mallCar{from{transform:translateX(-60px)}to{transform:translateX(700px)}}
+.plan .anim.pkt{animation:mallPkt 2.4s linear infinite}
+@keyframes mallPkt{0%{offset-distance:0%;opacity:0}10%,90%{opacity:1}100%{offset-distance:100%;opacity:0}}
+.plan .anim.glow{animation:mallGlow 3s ease-in-out infinite}
+.plan .anim.blink{animation:mallGlow 1.4s ease-in-out infinite}
+@keyframes mallGlow{0%,100%{opacity:.35}50%{opacity:1}}
+.plan .anim.wave{opacity:0;transform-box:fill-box;transform-origin:center top;animation:mallWave 2.4s ease-out infinite}
+@keyframes mallWave{0%{opacity:.85;transform:scale(.4)}100%{opacity:0;transform:scale(1.3)}}
+.plan .anim.sweep{animation:mallSweep 5s ease-in-out infinite alternate}
+@keyframes mallSweep{from{transform:rotate(-14deg)}to{transform:rotate(12deg)}}
+.plan .anim.boom{animation:mallBoom 7s ease-in-out infinite}
+@keyframes mallBoom{0%,35%{transform:rotate(0)}50%,80%{transform:rotate(-70deg)}100%{transform:rotate(0)}}
+.plan .anim.car2{animation:mallCar2 7s ease-in-out infinite}
+@keyframes mallCar2{0%,42%{transform:translateX(660px)}56%{transform:translateX(596px)}78%,100%{transform:translateX(500px)}}
+.plan .anim.walk{animation:mallWalk 6s ease-in-out infinite alternate}
+@keyframes mallWalk{from{transform:translateX(0)}to{transform:translateX(-28px)}}
+.plan .anim.esc{animation:mallEsc 1.2s linear infinite}
+@keyframes mallEsc{to{stroke-dashoffset:-20}}
 .legend{display:flex;flex-wrap:wrap;gap:14px;font-size:.82rem;color:var(--ink-2);padding:8px 6px 0}
 .legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px;background:var(--c)}
 
@@ -231,50 +251,89 @@ footer b{color:#fff;font-weight:650}
     </div>
 
     <figure class="plan">
-      <svg viewBox="0 0 520 360" role="group" aria-label="Floor plan of a retail shop showing where each system goes. Select a point to learn more.">
-        <!-- shop shell -->
-        <rect x="20" y="20" width="480" height="300" rx="6" fill="#fff" stroke="#14202E" stroke-width="4"/>
-        <!-- entrance gap -->
-        <rect x="190" y="314" width="120" height="12" fill="#EEF1F4"/>
-        <text x="250" y="346" font-family="Archivo,sans-serif" font-size="12" fill="#3B4A5C" text-anchor="middle">Entrance</text>
-        <!-- back room -->
-        <path d="M360 20 V120 H440 M470 120 H500" fill="none" stroke="#14202E" stroke-width="3"/>
-        <text x="430" y="62" font-family="Archivo,sans-serif" font-size="12" fill="#3B4A5C" text-anchor="middle">Store room</text>
-        <!-- shelves -->
-        <g fill="#E3E8EE" stroke="#C9D1DA">
-          <rect x="60" y="70" width="34" height="170" rx="3"/>
-          <rect x="140" y="70" width="34" height="170" rx="3"/>
-          <rect x="220" y="70" width="34" height="170" rx="3"/>
-        </g>
-        <text x="157" y="258" font-family="Archivo,sans-serif" font-size="12" fill="#3B4A5C" text-anchor="middle">Shelves</text>
-        <!-- counter -->
-        <rect x="350" y="200" width="120" height="44" rx="4" fill="#E3E8EE" stroke="#C9D1DA"/>
-        <text x="410" y="262" font-family="Archivo,sans-serif" font-size="12" fill="#3B4A5C" text-anchor="middle">Billing counter</text>
-        <!-- camera cones -->
-        <path d="M34 34 L190 110 L110 200 Z" fill="#E89B00" opacity=".13"/>
-        <path d="M486 306 L330 250 L420 170 Z" fill="#E89B00" opacity=".13"/>
-        <!-- EAS gates -->
-        <rect x="196" y="296" width="6" height="22" fill="#1F8A4C"/>
-        <rect x="298" y="296" width="6" height="22" fill="#1F8A4C"/>
-
-        <g class="hot" data-k="cctv" tabindex="0" role="button" aria-label="Video surveillance (CCTV cameras)"><circle class="pulse" cx="38" cy="38" r="13" fill="#E89B00"/><circle class="ring" cx="38" cy="38" r="13" stroke="#E89B00"/><text x="38" y="38" fill="#14202E">C</text></g>
-        <g class="hot" data-k="fire" tabindex="0" role="button" aria-label="Fire alarm"><circle class="pulse" cx="300" cy="150" r="13" fill="#E89B00"/><circle class="ring" cx="300" cy="150" r="13" stroke="#E89B00"/><text x="300" y="150" fill="#14202E">F</text></g>
-        <g class="hot" data-k="access" tabindex="0" role="button" aria-label="Access control"><circle class="pulse" cx="455" cy="120" r="13" fill="#E89B00"/><circle class="ring" cx="455" cy="120" r="13" stroke="#E89B00"/><text x="455" y="120" fill="#14202E">A</text></g>
-        <g class="hot" data-k="pos" tabindex="0" role="button" aria-label="POS billing"><circle class="pulse" cx="380" cy="222" r="13" fill="#1F8A4C"/><circle class="ring" cx="380" cy="222" r="13" stroke="#1F8A4C"/><text x="380" y="222" fill="#14202E">P</text></g>
-        <g class="hot" data-k="barcode" tabindex="0" role="button" aria-label="Barcode scanner and printer"><circle class="pulse" cx="440" cy="222" r="13" fill="#1F8A4C"/><circle class="ring" cx="440" cy="222" r="13" stroke="#1F8A4C"/><text x="440" y="222" fill="#14202E">B</text></g>
-        <g class="hot" data-k="eas" tabindex="0" role="button" aria-label="Anti-theft gates"><circle class="pulse" cx="250" cy="296" r="13" fill="#1F8A4C"/><circle class="ring" cx="250" cy="296" r="13" stroke="#1F8A4C"/><text x="250" y="296" fill="#14202E">E</text></g>
-        <g class="hot" data-k="net" tabindex="0" role="button" aria-label="Network and Wi-Fi"><circle class="pulse" cx="400" cy="90" r="13" fill="#0E7C86"/><circle class="ring" cx="400" cy="90" r="13" stroke="#0E7C86"/><text x="400" y="90" fill="#14202E">N</text></g>
-        <g class="hot" data-k="intrusion" tabindex="0" role="button" aria-label="Intrusion detection"><circle class="pulse" cx="340" cy="42" r="13" fill="#E89B00"/><circle class="ring" cx="340" cy="42" r="13" stroke="#E89B00"/><text x="340" y="42" fill="#14202E">D</text></g>
-        <g class="hot" data-k="intercom" tabindex="0" role="button" aria-label="Intercom systems"><circle class="pulse" cx="120" cy="300" r="13" fill="#E89B00"/><circle class="ring" cx="120" cy="300" r="13" stroke="#E89B00"/><text x="120" y="300" fill="#14202E">I</text></g>
-        <g class="hot" data-k="gate" tabindex="0" role="button" aria-label="Entrance control"><circle class="pulse" cx="345" cy="296" r="13" fill="#E89B00"/><circle class="ring" cx="345" cy="296" r="13" stroke="#E89B00"/><text x="345" y="296" fill="#14202E">G</text></g>
-        <g class="hot" data-k="av" tabindex="0" role="button" aria-label="Projection, audio and video"><circle class="pulse" cx="300" cy="62" r="13" fill="#2357C6"/><circle class="ring" cx="300" cy="62" r="13" stroke="#2357C6"/><text x="300" y="62" fill="#14202E">S</text></g>
-        <g class="hot" data-k="lms" tabindex="0" role="button" aria-label="Light management system"><circle class="pulse" cx="117" cy="44" r="13" fill="#2357C6"/><circle class="ring" cx="117" cy="44" r="13" stroke="#2357C6"/><text x="117" y="44" fill="#14202E">L</text></g>
-        <g class="hot" data-k="auto" tabindex="0" role="button" aria-label="Home and office automation"><circle class="pulse" cx="480" cy="94" r="13" fill="#2357C6"/><circle class="ring" cx="480" cy="94" r="13" stroke="#2357C6"/><text x="480" y="94" fill="#14202E">H</text></g>
-      </svg>
+      <svg viewBox="0 0 640 410" role="group" aria-label="Shopping mall cut-away showing where each M K Technosys service is used. Select a point to learn more.">
+        <rect x="0" y="0" width="640" height="352" fill="#EEF4FB"/>
+        <path d="M0 352V250h30v-30h26v40h20v-60h34v70h12V200h0H0zM560 352V230h24v-40h30v50h26v112z" fill="#DCE6F2"/>
+        <circle cx="40" cy="44" r="18" fill="#FDE68A" opacity=".8"/>
+        <rect x="0" y="352" width="640" height="58" fill="#CBD5E1"/><rect x="0" y="352" width="640" height="6" fill="#E2E8F0"/>
+        <rect x="548" y="384" width="22" height="3" fill="#F8FAFC"/><rect x="582" y="384" width="22" height="3" fill="#F8FAFC"/><rect x="616" y="384" width="22" height="3" fill="#F8FAFC"/>
+        <ellipse cx="300" cy="356" rx="260" ry="5" fill="#94A3B8" opacity=".35"/>
+        <rect x="28" y="318" width="5" height="36" fill="#7C5A3A"/><circle cx="30" cy="308" r="16" fill="#4ADE80"/><circle cx="22" cy="314" r="10" fill="#22C55E"/>
+        <rect x="44" y="290" width="3" height="64" fill="#64748B"/><path d="M45 290h10" stroke="#64748B" stroke-width="3"/><circle cx="56" cy="294" r="5" fill="#FDE68A" class="anim glow"/>
+        <path d="M562 54a20 20 0 0 1 37-6 16 16 0 0 1 28 10 13 13 0 0 1-4 26h-56a15 15 0 0 1-5-30z" fill="#fff" stroke="#0E7C86" stroke-width="2"/>
+        <path d="M552 396 C 630 380, 640 250, 600 88" fill="none" stroke="#0E7C86" stroke-width="1.5" stroke-dasharray="3 5" opacity=".7"/><circle r="4" class="anim pkt" style="offset-path:path('M552 396 C 630 380, 640 250, 600 88')" fill="#0E7C86"/><circle r="4" class="anim pkt" style="offset-path:path('M552 396 C 630 380, 640 250, 600 88');animation-delay:1.2s" fill="#0E7C86"/>
+        <rect x="574" y="104" width="58" height="136" rx="11" fill="#1E293B"/><rect x="579" y="114" width="48" height="116" rx="4" fill="#F5F3FF"/><rect x="595" y="108" width="16" height="3" rx="1.5" fill="#475569"/>
+        <g class="anim car2"><rect x="0" y="388" width="46" height="13" rx="4" fill="#2357C6"/><rect x="9" y="381" width="24" height="9" rx="3" fill="#2357C6"/><rect x="12" y="383" width="8" height="5" fill="#DBEAFE"/><rect x="22" y="383" width="8" height="5" fill="#DBEAFE"/><circle cx="10" cy="402" r="4.5" fill="#14202E"/><circle cx="36" cy="402" r="4.5" fill="#14202E"/></g>
+        <path d="M540 78 L556 70 L556 344 L540 352 Z" fill="#94A3B8"/><path d="M540 352 L556 344 L556 404 L540 410 Z" fill="#0B1220"/>
+        <path d="M60 78 Q300 14 540 78 Z" fill="#BFDBFE" stroke="#14202E" stroke-width="3"/><path d="M90 74 Q300 28 510 74" fill="none" stroke="#fff" stroke-width="3" opacity=".7"/>
+        <path d="M140 78 L150 58" stroke="#93C5FD" stroke-width="2"/><path d="M220 78 L226 42" stroke="#93C5FD" stroke-width="2"/><path d="M300 78 L300 35" stroke="#93C5FD" stroke-width="2"/><path d="M380 78 L374 42" stroke="#93C5FD" stroke-width="2"/><path d="M460 78 L450 58" stroke="#93C5FD" stroke-width="2"/>
+        <rect x="250" y="62" width="100" height="14" rx="3" fill="#14202E"/><text x="300" y="73" font-family="Archivo,sans-serif" font-size="9" font-weight="800" letter-spacing=".08em" fill="#FDE68A" text-anchor="middle">CITY MALL</text>
+        <rect x="60" y="78" width="480" height="274" fill="#fff" stroke="#14202E" stroke-width="3"/>
+        <rect x="62" y="80" width="476" height="84" fill="#1E1B4B"/><text x="70" y="92" font-family="Archivo,sans-serif" font-size="8" font-weight="800" letter-spacing=".08em" fill="#A5B4FC">CINEMA</text>
+        <rect x="96" y="96" width="138" height="58" rx="2" fill="#0F172A"/><rect x="101" y="101" width="128" height="48" fill="#DBEAFE" class="anim glow"/><path d="M110 142 l22-20 16 12 22-22 28 30" fill="none" stroke="#2357C6" stroke-width="2.5"/><circle cx="210" cy="114" r="6" fill="#FDE68A"/>
+        <path d="M332 98 L234 102 L234 148 Z" fill="#FDE68A" opacity=".22" class="anim glow"/><rect x="326" y="92" width="16" height="10" rx="2" fill="#94A3B8"/>
+        <rect x="248" y="94" width="14" height="22" rx="3" fill="#0F172A" stroke="#475569"/><circle cx="255" cy="109" r="4" fill="#64748B"/>
+        <rect x="268" y="134" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="294" y="134" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="320" y="134" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="346" y="134" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="372" y="134" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="398" y="134" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="424" y="134" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="450" y="134" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="476" y="134" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="502" y="134" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="268" y="148" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="294" y="148" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="320" y="148" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="346" y="148" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="372" y="148" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="398" y="148" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="424" y="148" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="450" y="148" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="476" y="148" width="20" height="10" rx="3" fill="#4C1D95"/><rect x="502" y="148" width="20" height="10" rx="3" fill="#4C1D95"/>
+        <circle cx="278" cy="131" r="3.4" fill="#A5B4FC"/><circle cx="330" cy="131" r="3.4" fill="#A5B4FC"/><circle cx="408" cy="131" r="3.4" fill="#A5B4FC"/><circle cx="460" cy="145" r="3.4" fill="#A5B4FC"/><circle cx="304" cy="145" r="3.4" fill="#A5B4FC"/><circle cx="382" cy="145" r="3.4" fill="#A5B4FC"/>
+        <circle cx="392" cy="88" r="11" fill="#FDE68A" class="anim glow"/><circle cx="392" cy="88" r="5" fill="#F59E0B"/>
+        <circle cx="470" cy="88" r="6" fill="#F8FAFC" stroke="#DC2626" stroke-width="2"/><circle cx="470" cy="88" r="2" fill="#DC2626" class="anim blink"/>
+        <line x1="60" y1="164" x2="540" y2="164" stroke="#14202E" stroke-width="3"/>
+        <rect x="62" y="166" width="476" height="86" fill="#FFF7ED"/><text x="70" y="178" font-family="Archivo,sans-serif" font-size="8" font-weight="800" letter-spacing=".08em" fill="#9A3412">FOOD COURT</text>
+        <rect x="140" y="172" width="44" height="16" rx="3" fill="#fff" stroke="#2357C6"/><path d="M146 192 v6 M156 192 v8 M166 192 v6 M176 192 v8" stroke="#93C5FD" stroke-width="2" class="anim glow"/>
+        <rect x="92" y="200" width="34" height="40" rx="3" fill="#FDBA74"/><rect x="92" y="196" width="34" height="8" rx="2" fill="#EA580C"/><text x="109" y="226" font-family="Archivo,sans-serif" font-size="7" font-weight="800" letter-spacing=".08em" fill="#7C2D12" text-anchor="middle">CAFE</text>
+        <path d="M290 252 L372 166" stroke="#94A3B8" stroke-width="12"/><path d="M290 252 L372 166" stroke="#E2E8F0" stroke-width="7" stroke-dasharray="6 4" class="anim esc"/>
+        <g class=""><circle cx="318" cy="207" r="3.6" fill="#334155"/><rect x="314.5" y="211" width="7" height="10" rx="3" fill="#EC4899"/><rect x="315" y="220" width="2.4" height="5" fill="#334155"/><rect x="318.6" y="220" width="2.4" height="5" fill="#334155"/></g><g class=""><circle cx="346" cy="179" r="3.6" fill="#334155"/><rect x="342.5" y="183" width="7" height="10" rx="3" fill="#2357C6"/><rect x="343" y="192" width="2.4" height="5" fill="#334155"/><rect x="346.6" y="192" width="2.4" height="5" fill="#334155"/></g>
+        <rect x="252" y="200" width="18" height="26" rx="3" fill="#fff" stroke="#C27C00" stroke-width="1.5"/><rect x="256" y="205" width="10" height="5" fill="#C27C00"/>
+        <rect x="150" y="226" width="34" height="5" rx="2" fill="#A16207"/><rect x="200" y="226" width="34" height="5" rx="2" fill="#A16207"/><rect x="392" y="226" width="34" height="5" rx="2" fill="#A16207"/>
+        <g class=""><circle cx="160" cy="207" r="3.6" fill="#334155"/><rect x="156.5" y="211" width="7" height="10" rx="3" fill="#0E7C86"/><rect x="157" y="220" width="2.4" height="5" fill="#334155"/><rect x="160.6" y="220" width="2.4" height="5" fill="#334155"/></g><g class=""><circle cx="222" cy="207" r="3.6" fill="#334155"/><rect x="218.5" y="211" width="7" height="10" rx="3" fill="#F59E0B"/><rect x="219" y="220" width="2.4" height="5" fill="#334155"/><rect x="222.6" y="220" width="2.4" height="5" fill="#334155"/></g><g class=""><circle cx="414" cy="207" r="3.6" fill="#334155"/><rect x="410.5" y="211" width="7" height="10" rx="3" fill="#1F8A4C"/><rect x="411" y="220" width="2.4" height="5" fill="#334155"/><rect x="414.6" y="220" width="2.4" height="5" fill="#334155"/></g>
+        <rect x="352" y="168" width="16" height="6" rx="3" fill="#fff" stroke="#0E7C86"/>
+        <path class="anim wave" style="animation-delay:0s" d="M350 182 q10 10 20 0" fill="none" stroke="#0E7C86" stroke-width="2"/><path class="anim wave" style="animation-delay:0.8s" d="M344 186 q16 16 32 0" fill="none" stroke="#0E7C86" stroke-width="2"/><path class="anim wave" style="animation-delay:1.6s" d="M338 190 q22 22 44 0" fill="none" stroke="#0E7C86" stroke-width="2"/>
+        <rect x="438" y="170" width="16" height="9" rx="3" fill="#334155"/><path class="anim sweep" style="transform-origin:446px 176px" d="M446 176 L404 248 L462 250 Z" fill="#E89B00" opacity=".2"/>
+        <rect x="500" y="188" width="30" height="64" fill="#E2E8F0" stroke="#94A3B8"/><circle cx="523" cy="222" r="2" fill="#475569"/><rect x="486" y="208" width="10" height="16" rx="2" fill="#fff" stroke="#C27C00" stroke-width="1.5"/>
+        <circle cx="528" cy="174" r="4" fill="#C27C00" class="anim blink"/>
+        <line x1="60" y1="252" x2="540" y2="252" stroke="#14202E" stroke-width="3"/>
+        <rect x="62" y="254" width="476" height="98" fill="#F8FAFC"/><text x="70" y="266" font-family="Archivo,sans-serif" font-size="8" font-weight="800" letter-spacing=".08em" fill="#475569">STORES</text>
+        <rect x="92" y="272" width="120" height="80" fill="#F0FDF4" stroke="#1F8A4C" stroke-width="1.5"/><path d="M92 272h15l-2 12h-11z" fill="#1F8A4C"/><path d="M107 272h15l-2 12h-11z" fill="#fff"/><path d="M122 272h15l-2 12h-11z" fill="#1F8A4C"/><path d="M137 272h15l-2 12h-11z" fill="#fff"/><path d="M152 272h15l-2 12h-11z" fill="#1F8A4C"/><path d="M167 272h15l-2 12h-11z" fill="#fff"/><path d="M182 272h15l-2 12h-11z" fill="#1F8A4C"/><path d="M197 272h15l-2 12h-11z" fill="#fff"/><rect x="146" y="314" width="56" height="22" rx="2" fill="#E2E8F0"/><rect x="156" y="300" width="18" height="14" rx="2" fill="#14202E"/><rect x="159" y="303" width="12" height="8" fill="#4ADE80"/><rect x="104" y="296" width="6" height="40" fill="#BBF7D0"/><rect x="116" y="296" width="6" height="40" fill="#FBCFE8"/><rect x="128" y="296" width="6" height="40" fill="#BFDBFE"/>
+        <rect x="226" y="272" width="110" height="80" fill="#EFF6FF" stroke="#2357C6" stroke-width="1.5"/><path d="M226.0 272h13.75l-2 12h-9.75z" fill="#2357C6"/><path d="M239.75 272h13.75l-2 12h-9.75z" fill="#fff"/><path d="M253.5 272h13.75l-2 12h-9.75z" fill="#2357C6"/><path d="M267.25 272h13.75l-2 12h-9.75z" fill="#fff"/><path d="M281.0 272h13.75l-2 12h-9.75z" fill="#2357C6"/><path d="M294.75 272h13.75l-2 12h-9.75z" fill="#fff"/><path d="M308.5 272h13.75l-2 12h-9.75z" fill="#2357C6"/><path d="M322.25 272h13.75l-2 12h-9.75z" fill="#fff"/><rect x="240" y="296" width="30" height="20" rx="2" fill="#14202E"/><rect x="280" y="296" width="30" height="20" rx="2" fill="#14202E"/><rect x="244" y="300" width="22" height="12" fill="#60A5FA" class="anim glow"/><rect x="284" y="300" width="22" height="12" fill="#60A5FA" class="anim glow" style="animation-delay:1s"/><rect x="240" y="322" width="70" height="4" fill="#94A3B8"/>
+        <rect x="350" y="272" width="86" height="80" fill="#FFFBEB" stroke="#C27C00" stroke-width="1.5"/><path d="M350.0 272h10.75l-2 12h-6.75z" fill="#C27C00"/><path d="M360.75 272h10.75l-2 12h-6.75z" fill="#fff"/><path d="M371.5 272h10.75l-2 12h-6.75z" fill="#C27C00"/><path d="M382.25 272h10.75l-2 12h-6.75z" fill="#fff"/><path d="M393.0 272h10.75l-2 12h-6.75z" fill="#C27C00"/><path d="M403.75 272h10.75l-2 12h-6.75z" fill="#fff"/><path d="M414.5 272h10.75l-2 12h-6.75z" fill="#C27C00"/><path d="M425.25 272h10.75l-2 12h-6.75z" fill="#fff"/><rect x="380" y="316" width="44" height="20" rx="2" fill="#E2E8F0"/><rect x="388" y="306" width="10" height="8" rx="2" fill="#1F8A4C"/><rect x="360" y="296" width="14" height="40" fill="#FDE68A"/>
+        <g class=""><circle cx="200" cy="333" r="3.6" fill="#334155"/><rect x="196.5" y="337" width="7" height="10" rx="3" fill="#7C3AED"/><rect x="197" y="346" width="2.4" height="5" fill="#334155"/><rect x="200.6" y="346" width="2.4" height="5" fill="#334155"/></g><g class=""><circle cx="330" cy="333" r="3.6" fill="#334155"/><rect x="326.5" y="337" width="7" height="10" rx="3" fill="#0EA5E9"/><rect x="327" y="346" width="2.4" height="5" fill="#334155"/><rect x="330.6" y="346" width="2.4" height="5" fill="#334155"/></g>
+        <g class="anim walk"><g class=""><circle cx="470" cy="333" r="3.6" fill="#334155"/><rect x="466.5" y="337" width="7" height="10" rx="3" fill="#DB2777"/><rect x="467" y="346" width="2.4" height="5" fill="#334155"/><rect x="470.6" y="346" width="2.4" height="5" fill="#334155"/></g></g>
+        <rect x="452" y="266" width="6" height="86" fill="#1F8A4C"/><rect x="504" y="266" width="6" height="86" fill="#1F8A4C"/><rect x="461" y="300" width="40" height="52" fill="#E0F2FE" opacity=".6"/><text x="481" y="292" font-family="Archivo,sans-serif" font-size="8" font-weight="800" letter-spacing=".08em" fill="#1F8A4C" text-anchor="middle">ENTRY</text>
+        <rect x="60" y="352" width="480" height="52" fill="#0F172A" stroke="#14202E" stroke-width="3"/><rect x="62" y="354" width="476" height="48" fill="#0E7C86" opacity=".12"/>
+        <text x="70" y="370" font-family="Archivo,sans-serif" font-size="8" font-weight="800" letter-spacing=".08em" fill="#5EEAD4" text-anchor="start">SERVER ROOM</text>
+        <g transform="translate(40 4)"><rect x="110" y="358" width="18" height="32" rx="2" fill="#B91C1C"/><path d="M114 368h10M114 376h10" stroke="#fff" stroke-width="2"/><rect x="170" y="358" width="18" height="32" rx="2" fill="#475569"/><circle cx="176" cy="366" r="2" fill="#38BDF8"/><circle cx="182" cy="366" r="2" fill="#38BDF8"/><rect x="228" y="362" width="22" height="16" rx="2" fill="#334155"/><rect x="232" y="365" width="14" height="9" fill="#38BDF8" opacity=".6"/><rect x="234" y="378" width="10" height="8" fill="#64748B"/><rect x="288" y="358" width="20" height="32" rx="2" fill="#0E7C86"/><path d="M293 366 a5 5 0 1 0 10 0" fill="none" stroke="#fff" stroke-width="2"/><rect x="346" y="364" width="26" height="16" rx="2" fill="#334155"/><rect x="350" y="367" width="18" height="9" fill="#A78BFA" opacity=".7"/><rect x="342" y="380" width="34" height="4" fill="#64748B"/><rect x="420" y="358" width="18" height="32" rx="2" fill="#020617" stroke="#334155"/><rect x="424" y="364" width="10" height="2" fill="#22C55E" class=""/><rect x="424" y="371" width="10" height="2" fill="#22C55E" class="anim blink"/><rect x="424" y="378" width="10" height="2" fill="#22C55E" class=""/><rect x="446" y="358" width="18" height="32" rx="2" fill="#020617" stroke="#334155"/><rect x="450" y="364" width="10" height="2" fill="#22C55E" class=""/><rect x="450" y="371" width="10" height="2" fill="#22C55E" class="anim blink"/><rect x="450" y="378" width="10" height="2" fill="#22C55E" class=""/><rect x="472" y="358" width="18" height="32" rx="2" fill="#020617" stroke="#334155"/><rect x="476" y="364" width="10" height="2" fill="#22C55E" class="anim blink"/><rect x="476" y="371" width="10" height="2" fill="#22C55E" class=""/><rect x="476" y="378" width="10" height="2" fill="#22C55E" class="anim blink"/></g>
+        <text x="594" y="404" font-family="Archivo,sans-serif" font-size="8" font-weight="800" letter-spacing=".08em" fill="#475569" text-anchor="middle">PARKING</text>
+        <rect x="566" y="322" width="12" height="34" rx="2" fill="#475569"/><rect x="564" y="318" width="16" height="8" rx="2" fill="#C27C00"/><g class="anim boom" style="transform-origin:572px 324px"><rect x="572" y="320" width="64" height="7" rx="3" fill="#C27C00"/><rect x="588" y="321" width="8" height="5" fill="#fff"/><rect x="608" y="321" width="8" height="5" fill="#fff"/></g>
+        
+        <g class="hot" data-k="cctv" tabindex="0" role="button" aria-label="Video surveillance" style="--c:#E89B00"><circle class="pulse" cx="446" cy="188" r="11" fill="#E89B00"/><circle class="ring" cx="446" cy="188" r="11" stroke="#E89B00"/></g>
+        <g class="hot" data-k="pos" tabindex="0" role="button" aria-label="POS billing" style="--c:#1F8A4C"><circle class="pulse" cx="174" cy="302" r="11" fill="#1F8A4C"/><circle class="ring" cx="174" cy="302" r="11" stroke="#1F8A4C"/></g>
+        <g class="hot" data-k="barcode" tabindex="0" role="button" aria-label="Barcode and RFID" style="--c:#1F8A4C"><circle class="pulse" cx="398" cy="300" r="11" fill="#1F8A4C"/><circle class="ring" cx="398" cy="300" r="11" stroke="#1F8A4C"/></g>
+        <g class="hot" data-k="eas" tabindex="0" role="button" aria-label="Anti-theft gates" style="--c:#1F8A4C"><circle class="pulse" cx="481" cy="318" r="11" fill="#1F8A4C"/><circle class="ring" cx="481" cy="318" r="11" stroke="#1F8A4C"/></g>
+        <g class="hot" data-k="fire" tabindex="0" role="button" aria-label="Fire alarm" style="--c:#E89B00"><circle class="pulse" cx="486" cy="100" r="11" fill="#E89B00"/><circle class="ring" cx="486" cy="100" r="11" stroke="#E89B00"/></g>
+        <g class="hot" data-k="access" tabindex="0" role="button" aria-label="Access control" style="--c:#E89B00"><circle class="pulse" cx="491" cy="238" r="11" fill="#E89B00"/><circle class="ring" cx="491" cy="238" r="11" stroke="#E89B00"/></g>
+        <g class="hot" data-k="intrusion" tabindex="0" role="button" aria-label="Intrusion detection" style="--c:#E89B00"><circle class="pulse" cx="526" cy="192" r="11" fill="#E89B00"/><circle class="ring" cx="526" cy="192" r="11" stroke="#E89B00"/></g>
+        <g class="hot" data-k="gate" tabindex="0" role="button" aria-label="Entrance control" style="--c:#E89B00"><circle class="pulse" cx="604" cy="306" r="11" fill="#E89B00"/><circle class="ring" cx="604" cy="306" r="11" stroke="#E89B00"/></g>
+        <g class="hot" data-k="intercom" tabindex="0" role="button" aria-label="Intercom systems" style="--c:#E89B00"><circle class="pulse" cx="261" cy="240" r="11" fill="#E89B00"/><circle class="ring" cx="261" cy="240" r="11" stroke="#E89B00"/></g>
+        <g class="hot" data-k="net" tabindex="0" role="button" aria-label="Network and Wi-Fi" style="--c:#0E7C86"><circle class="pulse" cx="376" cy="188" r="11" fill="#0E7C86"/><circle class="ring" cx="376" cy="188" r="11" stroke="#0E7C86"/></g>
+        <g class="hot" data-k="cyber" tabindex="0" role="button" aria-label="Cyber security" style="--c:#0E7C86"><circle class="pulse" cx="186" cy="378" r="11" fill="#0E7C86"/><circle class="ring" cx="186" cy="378" r="11" stroke="#0E7C86"/></g>
+        <g class="hot" data-k="storage" tabindex="0" role="button" aria-label="Data storage" style="--c:#0E7C86"><circle class="pulse" cx="246" cy="378" r="11" fill="#0E7C86"/><circle class="ring" cx="246" cy="378" r="11" stroke="#0E7C86"/></g>
+        <g class="hot" data-k="vdi" tabindex="0" role="button" aria-label="VDI and virtualization" style="--c:#0E7C86"><circle class="pulse" cx="308" cy="378" r="11" fill="#0E7C86"/><circle class="ring" cx="308" cy="378" r="11" stroke="#0E7C86"/></g>
+        <g class="hot" data-k="backup" tabindex="0" role="button" aria-label="Backup and disaster recovery" style="--c:#0E7C86"><circle class="pulse" cx="368" cy="378" r="11" fill="#0E7C86"/><circle class="ring" cx="368" cy="378" r="11" stroke="#0E7C86"/></g>
+        <g class="hot" data-k="cloud" tabindex="0" role="button" aria-label="Cloud services" style="--c:#0E7C86"><circle class="pulse" cx="594" cy="66" r="11" fill="#0E7C86"/><circle class="ring" cx="594" cy="66" r="11" stroke="#0E7C86"/></g>
+        <g class="hot" data-k="lic" tabindex="0" role="button" aria-label="Licensed software" style="--c:#0E7C86"><circle class="pulse" cx="432" cy="378" r="11" fill="#0E7C86"/><circle class="ring" cx="432" cy="378" r="11" stroke="#0E7C86"/></g>
+        <g class="hot" data-k="av" tabindex="0" role="button" aria-label="Projection, audio and video" style="--c:#2357C6"><circle class="pulse" cx="166" cy="124" r="11" fill="#2357C6"/><circle class="ring" cx="166" cy="124" r="11" stroke="#2357C6"/></g>
+        <g class="hot" data-k="pa" tabindex="0" role="button" aria-label="PA system" style="--c:#2357C6"><circle class="pulse" cx="272" cy="106" r="11" fill="#2357C6"/><circle class="ring" cx="272" cy="106" r="11" stroke="#2357C6"/></g>
+        <g class="hot" data-k="lms" tabindex="0" role="button" aria-label="Light management system" style="--c:#2357C6"><circle class="pulse" cx="408" cy="100" r="11" fill="#2357C6"/><circle class="ring" cx="408" cy="100" r="11" stroke="#2357C6"/></g>
+        <g class="hot" data-k="auto" tabindex="0" role="button" aria-label="Home and office automation" style="--c:#2357C6"><circle class="pulse" cx="196" cy="182" r="11" fill="#2357C6"/><circle class="ring" cx="196" cy="182" r="11" stroke="#2357C6"/></g>
+        <g class="hot" data-k="web" tabindex="0" role="button" aria-label="Website development" style="--c:#6B4FBB"><circle class="pulse" cx="603" cy="138" r="11" fill="#6B4FBB"/><circle class="ring" cx="603" cy="138" r="11" stroke="#6B4FBB"/></g>
+        <g class="hot" data-k="email" tabindex="0" role="button" aria-label="Business email and domains" style="--c:#6B4FBB"><circle class="pulse" cx="603" cy="162" r="11" fill="#6B4FBB"/><circle class="ring" cx="603" cy="162" r="11" stroke="#6B4FBB"/></g>
+        <g class="hot" data-k="android" tabindex="0" role="button" aria-label="Android app development" style="--c:#6B4FBB"><circle class="pulse" cx="603" cy="186" r="11" fill="#6B4FBB"/><circle class="ring" cx="603" cy="186" r="11" stroke="#6B4FBB"/></g>
+        <g class="hot" data-k="webapp" tabindex="0" role="button" aria-label="Web app development" style="--c:#6B4FBB"><circle class="pulse" cx="603" cy="210" r="11" fill="#6B4FBB"/><circle class="ring" cx="603" cy="210" r="11" stroke="#6B4FBB"/></g>
+        </svg>
       <div class="info" id="info" aria-live="polite"></div>
       <div class="ctrl"><button type="button" id="prev" aria-label="Previous service">&#8249;</button><button type="button" id="play" aria-label="Pause slideshow">&#10073;&#10073;</button><div class="bar"><i id="bar"></i></div><span class="count" id="count"></span><button type="button" id="next" aria-label="Next service">&#8250;</button></div>
-      <div class="legend"><span style="--c:#E89B00">Security &amp; safety</span><span style="--c:#1F8A4C">Retail &amp; RFID</span><span style="--c:#0E7C86">IT &amp; networking</span><span style="--c:#2357C6">AV &amp; automation</span></div>
-      <figcaption class="hint">Services change automatically. Tap any point on the plan to pick one.</figcaption>
+      <div class="legend"><span style="--c:#E89B00">Security &amp; safety</span><span style="--c:#1F8A4C">Retail &amp; RFID</span><span style="--c:#0E7C86">IT &amp; networking</span><span style="--c:#2357C6">AV &amp; automation</span><span style="--c:#6B4FBB">Digital &amp; software</span></div>
+      <figcaption class="hint">Services change automatically. Tap any point to pick one.</figcaption>
     </figure>
   </div>
 </section>
@@ -493,20 +552,32 @@ footer b{color:#fff;font-weight:650}
 <script>
 (function(){
   var D={
-    cctv:["Security & safety","Video Surveillance","CCTV cameras","Cover aisles, the counter and the entrance. Watch live and play back recordings from your phone.","#E89B00"],
+    cctv:["Security & safety","Video Surveillance","CCTV cameras","Cameras cover the food court, stores and entrances. Watch live and play back recordings from your phone.","#E89B00"],
     pos:["Retail & RFID","POS billing","","Billing software with touch terminal, receipt printer and cash drawer. GST bills and stock reports.","#1F8A4C"],
-    barcode:["Retail & RFID","Barcode scanner & label printer","","Scan items at the counter and print your own price and barcode labels.","#1F8A4C"],
-    eas:["Retail & RFID","Anti-theft gates","EAS","Gates at the door sound an alarm if a tagged item leaves without billing.","#1F8A4C"],
-    net:["IT & networking","Network & Wi-Fi","","Router, switch and cabling in one neat rack, with Wi-Fi that reaches the whole shop.","#0E7C86"],
-    fire:["Security & safety","Fire alarm","","Smoke and heat detectors that raise the alarm early, wired to a control panel.","#E89B00"],
-    access:["Security & safety","Access control","","Fingerprint, card or face lock on the store room, and a video door phone to see visitors before you open. Keeps a record of who went in and when.","#E89B00"],
-    intercom:["Security & safety","Intercom systems","","Talk instantly between the billing counter, store room, office cabins and security gate at the press of a button, with no mobile calls or shouting across the floor.","#E89B00"],
-    intrusion:["Security & safety","Intrusion detection","Burglar alarm","Motion and door sensors that sound a siren and alert your phone if someone enters after closing.","#E89B00"],
-    gate:["Security & safety","Entrance control","Turnstiles, boom barriers & gates","Control who comes in at offices, factories, societies and parking, on foot or by vehicle.","#E89B00"],
-    av:["AV & automation","Projection, audio & PA","","Projectors, displays, PA systems and background music for meeting rooms, classrooms, halls and shops.","#2357C6"],
-    lms:["AV & automation","Light Management System","LMS","Lights switch on and off by schedule or sensor, so you never pay to light an empty shop.","#2357C6"],
-    auto:["AV & automation","Home & office automation","","Control lights, AC, curtains and locks from your phone or by voice, at home or at work.","#2357C6"]
+    barcode:["Retail & RFID","Barcode & RFID","","Scan items at the counter, print your own barcode labels and track stock with RFID tags.","#1F8A4C"],
+    eas:["Retail & RFID","Anti-theft gates","EAS","Gates at the entry sound an alarm if a tagged item leaves without billing.","#1F8A4C"],
+    fire:["Security & safety","Fire alarm","","Smoke and heat detectors raise the alarm early, wired to a central control panel.","#E89B00"],
+    access:["Security & safety","Access control","","Fingerprint, card or face locks on staff doors, plus video door phones to see visitors first.","#E89B00"],
+    intrusion:["Security & safety","Intrusion detection","Burglar alarm","Motion and door sensors sound a siren and alert your phone if anyone enters after closing.","#E89B00"],
+    gate:["Security & safety","Entrance control","Turnstiles, boom barriers & gates","Control who comes in at parking, offices, factories and societies, on foot or by vehicle.","#E89B00"],
+    intercom:["Security & safety","Intercom systems","","Talk instantly between counters, cabins, floors and the security gate at the press of a button.","#E89B00"],
+    net:["IT & networking","Networking & Wi-Fi","","Structured cabling, racks and switches, with Wi-Fi that reaches every corner.","#0E7C86"],
+    cyber:["IT & networking","Cyber security","","Firewalls, endpoint protection and antivirus, set up and managed for you.","#0E7C86"],
+    storage:["IT & networking","Data storage","NAS / SAN","Central storage that keeps business data safe and easy to reach for every team.","#0E7C86"],
+    vdi:["IT & networking","VDI & virtualization","","Virtual desktops, server virtualization and thin clients for flexible, secure access.","#0E7C86"],
+    backup:["IT & networking","Backup & disaster recovery","","Automatic backups and quick recovery, so work doesn't stop after a failure.","#0E7C86"],
+    cloud:["IT & networking","Cloud services","","Microsoft 365, cloud servers and moving your systems to the cloud.","#0E7C86"],
+    lic:["IT & networking","Licensed software","","Genuine licences for Microsoft, Adobe, Autodesk, antivirus and more, with installation and support.","#0E7C86"],
+    av:["AV & automation","Projection, audio & video","","Projectors, screens and sound for cinemas, meeting rooms, classrooms and halls.","#2357C6"],
+    pa:["AV & automation","PA system","","Announcements and background music for malls, shops, offices, factories and schools.","#2357C6"],
+    lms:["AV & automation","Light Management System","LMS","Lights switch by schedule or sensor, so you never pay to light an empty space.","#2357C6"],
+    auto:["AV & automation","Home & office automation","","Control lights, AC, curtains and locks from your phone or by voice.","#2357C6"],
+    web:["Digital & software","Website development","","Fast, mobile-friendly business websites, with hosting and updates included.","#6B4FBB"],
+    email:["Digital & software","Business email & domains","","Your own domain name and professional email such as info@yourbusiness.com.","#6B4FBB"],
+    android:["Digital & software","Android app development","","Custom apps for your customers or staff, published on Google Play.","#6B4FBB"],
+    webapp:["Digital & software","Web app development","","Online software such as billing, CRM, order and stock management, built around your business.","#6B4FBB"]
   };
+
   var order=Object.keys(D), info=document.getElementById('info'), hots=document.querySelectorAll('.hot'),
       bar=document.getElementById('bar'), count=document.getElementById('count'), play=document.getElementById('play'),
       plan=document.querySelector('.plan'), DUR=5000, idx=0, t0=0, raf=0, paused=false, hover=false, visible=true, holdUntil=0,
