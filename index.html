@@ -16,7 +16,7 @@
 <style>
 :root{
   --ink:#14202E; --ink-2:#3B4A5C; --line:#C9D1DA; --bg:#EEF1F4; --paper:#FFFFFF;
-  --sec:#E89B00; --ret:#1F8A4C; --net:#2357C6; --dig:#6B4FBB;
+  --sec:#E89B00; --ret:#1F8A4C; --net:#2357C6; --dig:#6B4FBB; --itn:#0E7C86;
   --f:"Archivo",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -108,8 +108,11 @@ nav a:hover,nav a:focus-visible{background:#2357C6;color:#fff;outline:none}
 /* sections */
 section.band{padding:72px 0}
 .intro{color:var(--ink-2);font-size:1.07rem;margin-bottom:36px}
-.cols{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
-@media (max-width:860px){.cols{grid-template-columns:1fr}}
+.cols{display:grid;grid-template-columns:repeat(6,1fr);gap:28px}
+.cols .svc{grid-column:span 2}
+.cols .svc:nth-child(4),.cols .svc:nth-child(5){grid-column:span 3}
+@media (max-width:1100px){.cols{grid-template-columns:repeat(2,1fr)}.cols .svc,.cols .svc:nth-child(4){grid-column:auto}.cols .svc:nth-child(5){grid-column:1/-1}}
+@media (max-width:860px){.cols{grid-template-columns:1fr}.cols .svc:nth-child(5){grid-column:auto}}
 .svc{background:var(--paper);border-radius:6px;padding:26px 24px 24px;border-top:6px solid var(--c);position:relative}
 .svc h3{margin-bottom:6px}
 .svc .for{font-size:.93rem;color:var(--ink-2);margin-bottom:14px}
@@ -260,7 +263,7 @@ footer b{color:#fff;font-weight:650}
         <g class="hot" data-k="pos" tabindex="0" role="button" aria-label="POS billing"><circle class="pulse" cx="380" cy="222" r="13" fill="#1F8A4C"/><circle class="ring" cx="380" cy="222" r="13" stroke="#1F8A4C"/><text x="380" y="222" fill="#14202E">P</text></g>
         <g class="hot" data-k="barcode" tabindex="0" role="button" aria-label="Barcode scanner and printer"><circle class="pulse" cx="440" cy="222" r="13" fill="#1F8A4C"/><circle class="ring" cx="440" cy="222" r="13" stroke="#1F8A4C"/><text x="440" y="222" fill="#14202E">B</text></g>
         <g class="hot" data-k="eas" tabindex="0" role="button" aria-label="Anti-theft gates"><circle class="pulse" cx="250" cy="296" r="13" fill="#1F8A4C"/><circle class="ring" cx="250" cy="296" r="13" stroke="#1F8A4C"/><text x="250" y="296" fill="#14202E">E</text></g>
-        <g class="hot" data-k="net" tabindex="0" role="button" aria-label="Network and Wi-Fi"><circle class="pulse" cx="400" cy="90" r="13" fill="#2357C6"/><circle class="ring" cx="400" cy="90" r="13" stroke="#2357C6"/><text x="400" y="90" fill="#14202E">N</text></g>
+        <g class="hot" data-k="net" tabindex="0" role="button" aria-label="Network and Wi-Fi"><circle class="pulse" cx="400" cy="90" r="13" fill="#0E7C86"/><circle class="ring" cx="400" cy="90" r="13" stroke="#0E7C86"/><text x="400" y="90" fill="#14202E">N</text></g>
         <g class="hot" data-k="intrusion" tabindex="0" role="button" aria-label="Intrusion detection"><circle class="pulse" cx="340" cy="42" r="13" fill="#E89B00"/><circle class="ring" cx="340" cy="42" r="13" stroke="#E89B00"/><text x="340" y="42" fill="#14202E">D</text></g>
         <g class="hot" data-k="intercom" tabindex="0" role="button" aria-label="Intercom systems"><circle class="pulse" cx="120" cy="300" r="13" fill="#E89B00"/><circle class="ring" cx="120" cy="300" r="13" stroke="#E89B00"/><text x="120" y="300" fill="#14202E">I</text></g>
         <g class="hot" data-k="gate" tabindex="0" role="button" aria-label="Entrance control"><circle class="pulse" cx="345" cy="296" r="13" fill="#E89B00"/><circle class="ring" cx="345" cy="296" r="13" stroke="#E89B00"/><text x="345" y="296" fill="#14202E">G</text></g>
@@ -270,7 +273,7 @@ footer b{color:#fff;font-weight:650}
       </svg>
       <div class="info" id="info" aria-live="polite"></div>
       <div class="ctrl"><button type="button" id="prev" aria-label="Previous service">&#8249;</button><button type="button" id="play" aria-label="Pause slideshow">&#10073;&#10073;</button><div class="bar"><i id="bar"></i></div><span class="count" id="count"></span><button type="button" id="next" aria-label="Next service">&#8250;</button></div>
-      <div class="legend"><span style="--c:#E89B00">Security &amp; safety</span><span style="--c:#1F8A4C">Retail &amp; RFID</span><span style="--c:#2357C6">IT, AV &amp; automation</span></div>
+      <div class="legend"><span style="--c:#E89B00">Security &amp; safety</span><span style="--c:#1F8A4C">Retail &amp; RFID</span><span style="--c:#0E7C86">IT &amp; networking</span><span style="--c:#2357C6">AV &amp; automation</span></div>
       <figcaption class="hint">Services change automatically. Tap any point on the plan to pick one.</figcaption>
     </figure>
   </div>
@@ -302,12 +305,25 @@ footer b{color:#fff;font-weight:650}
           <li><b>Intercom systems</b> Instant calling between cabins, floors and the gate</li>
         </ul>
       </article>
-      <article class="svc" style="--c:var(--net)">
-        <h3>IT, AV &amp; automation</h3>
-        <p class="for">A network your billing can rely on, and rooms that work at the press of a button.</p>
+      <article class="svc" style="--c:var(--itn)">
+        <h3>IT &amp; networking</h3>
+        <p class="for">A fast, secure network and IT setup that keeps your business data safe and your work running.</p>
         <ul>
-          <li><b>IT &amp; networking</b> Cabling, racks, Wi-Fi, routers and firewalls</li>
+          <li><b>Networking &amp; Wi-Fi</b> Structured cabling, racks, switches, routers and Wi-Fi coverage</li>
+          <li><b>Cyber security</b> Firewalls, endpoint protection and antivirus, set up and managed</li>
+          <li><b>Data storage</b> NAS and SAN storage that keeps business data safe and easy to access</li>
+          <li><b>Backup &amp; disaster recovery</b> Automatic backups and quick recovery, so work doesn't stop after a failure</li>
+          <li><b>Cloud services</b> Microsoft 365, cloud servers and moving your systems to the cloud</li>
+          <li><b>VDI &amp; virtualization</b> Virtual desktops, server virtualization and thin clients</li>
+          <li><b>Licensed software</b> Genuine licences for Microsoft, Adobe, Autodesk, antivirus and more, with installation and support</li>
+        </ul>
+      </article>
+      <article class="svc" style="--c:var(--net)">
+        <h3>AV &amp; automation</h3>
+        <p class="for">Rooms that sound and look right, and buildings that work at the press of a button.</p>
+        <ul>
           <li><b>Projection, audio &amp; video</b> For meeting rooms, classrooms and halls</li>
+          <li><b>PA system</b> Public address systems for announcements and background music in shops, offices, factories and schools</li>
           <li><b>Home &amp; office automation</b> For lights, curtains, AC and scenes</li>
           <li><b>LMS</b> Light management systems for offices, showrooms and buildings</li>
         </ul>
@@ -444,7 +460,7 @@ footer b{color:#fff;font-weight:650}
       <label for="s">What do you need?</label>
       <select id="s" name="Service needed" required>
         <option value="" disabled selected>Select one</option>
-        <option>Video surveillance (CCTV cameras)</option><option>POS billing system</option><option>Barcode / label printing</option><option>Wi-Fi / networking</option><option>RFID / EAS anti-theft</option><option>Fire alarm</option><option>Access control / intercom</option><option>Intrusion detection / entrance control</option><option>Projection, audio &amp; video</option><option>Home / office automation</option><option>Light management (LMS)</option><option>Website</option><option>Business email / domain</option><option>Android app</option><option>Web app</option><option>More than one of these</option>
+        <option>Video surveillance (CCTV cameras)</option><option>POS billing system</option><option>Barcode / label printing</option><option>Wi-Fi / networking</option><option>RFID / EAS anti-theft</option><option>Fire alarm</option><option>Access control / intercom</option><option>Intrusion detection / entrance control</option><option>Cyber security / firewall</option><option>Data storage / backup</option><option>Cloud / Microsoft 365</option><option>VDI / virtualization</option><option>Software licences</option><option>Projection, audio &amp; video</option><option>PA system</option><option>Home / office automation</option><option>Light management (LMS)</option><option>Website</option><option>Business email / domain</option><option>Android app</option><option>Web app</option><option>More than one of these</option>
       </select>
       <label for="m">Details</label>
       <textarea id="m" name="Details" placeholder="Area, shop size, number of counters..." required></textarea>
@@ -481,15 +497,15 @@ footer b{color:#fff;font-weight:650}
     pos:["Retail & RFID","POS billing","","Billing software with touch terminal, receipt printer and cash drawer. GST bills and stock reports.","#1F8A4C"],
     barcode:["Retail & RFID","Barcode scanner & label printer","","Scan items at the counter and print your own price and barcode labels.","#1F8A4C"],
     eas:["Retail & RFID","Anti-theft gates","EAS","Gates at the door sound an alarm if a tagged item leaves without billing.","#1F8A4C"],
-    net:["IT, AV & automation","Network & Wi-Fi","","Router, switch and cabling in one neat rack, with Wi-Fi that reaches the whole shop.","#2357C6"],
+    net:["IT & networking","Network & Wi-Fi","","Router, switch and cabling in one neat rack, with Wi-Fi that reaches the whole shop.","#0E7C86"],
     fire:["Security & safety","Fire alarm","","Smoke and heat detectors that raise the alarm early, wired to a control panel.","#E89B00"],
     access:["Security & safety","Access control","","Fingerprint, card or face lock on the store room, and a video door phone to see visitors before you open. Keeps a record of who went in and when.","#E89B00"],
     intercom:["Security & safety","Intercom systems","","Talk instantly between the billing counter, store room, office cabins and security gate at the press of a button, with no mobile calls or shouting across the floor.","#E89B00"],
     intrusion:["Security & safety","Intrusion detection","Burglar alarm","Motion and door sensors that sound a siren and alert your phone if someone enters after closing.","#E89B00"],
     gate:["Security & safety","Entrance control","Turnstiles, boom barriers & gates","Control who comes in at offices, factories, societies and parking, on foot or by vehicle.","#E89B00"],
-    av:["IT, AV & automation","Projection, audio & video","","Projectors, displays and sound for meeting rooms, classrooms, halls and in-store promotions.","#2357C6"],
-    lms:["IT, AV & automation","Light Management System","LMS","Lights switch on and off by schedule or sensor, so you never pay to light an empty shop.","#2357C6"],
-    auto:["IT, AV & automation","Home & office automation","","Control lights, AC, curtains and locks from your phone or by voice, at home or at work.","#2357C6"]
+    av:["AV & automation","Projection, audio & PA","","Projectors, displays, PA systems and background music for meeting rooms, classrooms, halls and shops.","#2357C6"],
+    lms:["AV & automation","Light Management System","LMS","Lights switch on and off by schedule or sensor, so you never pay to light an empty shop.","#2357C6"],
+    auto:["AV & automation","Home & office automation","","Control lights, AC, curtains and locks from your phone or by voice, at home or at work.","#2357C6"]
   };
   var order=Object.keys(D), info=document.getElementById('info'), hots=document.querySelectorAll('.hot'),
       bar=document.getElementById('bar'), count=document.getElementById('count'), play=document.getElementById('play'),
