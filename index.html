@@ -296,7 +296,7 @@ footer b{color:#fff;font-weight:650}
     </div>
 
     <figure class="plan cs" aria-roledescription="carousel" aria-label="Our services by category">
-      <div class="cs-top"><span class="cs-title">What we do</span><button type="button" class="cs-music" id="csMusic" aria-pressed="false" aria-label="Turn music on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="on" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/><path class="off" d="M16 9l6 6M22 9l-6 6"/></svg><span>Music</span></button></div>
+      <div class="cs-top"><span class="cs-title">What we do</span><button type="button" class="cs-music on" id="csMusic" aria-pressed="true" aria-label="Mute music"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="on" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/><path class="off" d="M16 9l6 6M22 9l-6 6"/></svg><span id="csMusicLbl">Mute</span></button></div>
       <div class="cs-vp"><div class="cs-track" id="csTrack"></div></div>
       <div class="cs-nav"><button type="button" id="csPrev" aria-label="Previous category">&#8249;</button><div class="cs-dots" id="csDots"></div><button type="button" id="csPlay" aria-label="Pause slideshow">&#10073;&#10073;</button><button type="button" id="csNext" aria-label="Next category">&#8250;</button></div>
     </figure>
@@ -479,12 +479,12 @@ footer b{color:#fff;font-weight:650}
       <label for="t">Type of business</label>
       <select id="t" name="Business type" required>
         <option value="" disabled selected>Select one</option>
-        <option>Retail shop</option><option>Supermarket / mart</option><option>Restaurant / cafe</option><option>Office</option><option>Home</option><option>Other</option>
+        <option>Retail shop</option><option>Supermarket / mart</option><option>Showroom</option><option>Restaurant / cafe</option><option>Hotel / resort</option><option>Office / corporate</option><option>Factory / warehouse</option><option>School / college / coaching</option><option>Hospital / clinic</option><option>Bank / finance office</option><option>Housing society / apartment</option><option>Shopping mall / commercial complex</option><option>Government / institution</option><option>Startup / online business</option><option>Home</option><option>Other</option>
       </select>
       <label for="s">What do you need?</label>
       <select id="s" name="Service needed" required>
         <option value="" disabled selected>Select one</option>
-        <option>Video surveillance (CCTV cameras)</option><option>POS billing system</option><option>Barcode / label printing</option><option>Wi-Fi / networking</option><option>RFID / EAS anti-theft</option><option>Fire alarm</option><option>Access control / intercom</option><option>Intrusion detection / entrance control</option><option>Cyber security / firewall</option><option>Data storage / backup</option><option>Cloud / Microsoft 365</option><option>VDI / virtualization</option><option>Software licences</option><option>Projection, audio &amp; video</option><option>PA system</option><option>Home / office automation</option><option>Light management (LMS)</option><option>Website</option><option>Business email / domain</option><option>Android app</option><option>Web app</option><option>More than one of these</option>
+        <option>Video surveillance (CCTV cameras)</option><option>POS billing system</option><option>Barcode / RFID</option><option>EAS anti-theft</option><option>Fire alarm</option><option>Access control / video door phone</option><option>Intrusion detection / burglar alarm</option><option>Entrance control (turnstile / boom barrier)</option><option>Intercom system</option><option>Networking &amp; Wi-Fi</option><option>Cyber security / firewall</option><option>Data storage (NAS / SAN)</option><option>Backup &amp; disaster recovery</option><option>Cloud / Microsoft 365</option><option>VDI / virtualization</option><option>Software licences</option><option>Projection, audio &amp; video</option><option>PA system</option><option>Home / office automation</option><option>Light management (LMS)</option><option>Website development</option><option>Business email / domain</option><option>Android app</option><option>Web app</option><option>More than one of these</option>
       </select>
       <label for="m">Details</label>
       <textarea id="m" name="Details" placeholder="Area, shop size, number of counters..." required></textarea>
@@ -608,7 +608,7 @@ footer b{color:#fff;font-weight:650}
   var mBtn=document.getElementById('csMusic'),ac=null,master=null,mOn=false,loopT=null,step=0;
   var CH=[[261.63,329.63,392.00,493.88],[220.00,261.63,329.63,392.00],[174.61,220.00,261.63,329.63],[196.00,246.94,293.66,392.00]];
   function note(f,t,d,type,vol){var o=ac.createOscillator(),g=ac.createGain();o.type=type;o.frequency.value=f;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(vol,t+0.04);g.gain.exponentialRampToValueAtTime(0.0001,t+d);o.connect(g);g.connect(master);o.start(t);o.stop(t+d+0.05)}
-  function bar(){var t=ac.currentTime+0.05,c=CH[Math.floor(step/8)%4];
+  function bar(){if(ac.state!=='running')return;var t=ac.currentTime+0.05,c=CH[Math.floor(step/8)%4];
     if(step%8===0)c.forEach(function(f){note(f/2,t,3.4,'sine',0.05)});
     note(c[[0,1,2,3,2,1,2,3][step%8]]*2,t,0.9,'triangle',0.035);
     step++;}
@@ -618,8 +618,22 @@ footer b{color:#fff;font-weight:650}
     if(!loopT){bar();loopT=setInterval(bar,430)}
   }
   function stopMusic(){if(!ac)return;master.gain.setTargetAtTime(0,ac.currentTime,0.3);setTimeout(function(){if(!mOn){clearInterval(loopT);loopT=null;ac.suspend()}},1200)}
-  function setMusic(v){mOn=v;mBtn.setAttribute('aria-pressed',v?'true':'false');mBtn.setAttribute('aria-label',v?'Mute music':'Turn music on');mBtn.classList.toggle('on',v);if(v)startMusic();else stopMusic()}
-  mBtn.addEventListener('click',function(){setMusic(!mOn)});
+  var mLbl=document.getElementById('csMusicLbl'),pref=null;
+  try{pref=localStorage.getItem('mkMusic')}catch(e){}
+  function setMusic(v,save){mOn=v;mBtn.setAttribute('aria-pressed',v?'true':'false');mBtn.setAttribute('aria-label',v?'Mute music':'Turn music on');mBtn.classList.toggle('on',v);mLbl.textContent=v?'Mute':'Music';
+    if(save){try{localStorage.setItem('mkMusic',v?'on':'off')}catch(e){}}
+    if(v)startMusic();else stopMusic()}
+  mBtn.addEventListener('click',function(e){e.stopPropagation();detach();setMusic(!mOn,true)});
+  // On by default: try to start now (allowed on some browsers); otherwise start on the visitor's first tap/click/key anywhere.
+  var gestures=['pointerdown','keydown','touchstart'];
+  function onFirst(){detach();if(mOn)startMusic()}
+  function detach(){gestures.forEach(function(g){document.removeEventListener(g,onFirst,true)})}
+  if(pref==='off'){setMusic(false,false)}
+  else{
+    mOn=true;
+    gestures.forEach(function(g){document.addEventListener(g,onFirst,true)});
+    try{startMusic();if(ac&&ac.state==='running')detach()}catch(e){}
+  }
   document.addEventListener('visibilitychange',function(){if(!ac||!mOn)return;if(document.hidden)ac.suspend();else ac.resume()});
 
   document.getElementById('enq').addEventListener('submit',function(e){
